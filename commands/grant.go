@@ -7,9 +7,9 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/uhppoted/uhppote-core/types"
-	"github.com/uhppoted/uhppoted-lib/acl"
-	"github.com/uhppoted/uhppoted-lib/config"
+	"codeberg.org/uhppoted/uhppoted-core/types"
+	"codeberg.org/uhppoted/uhppoted-lib/acl"
+	"codeberg.org/uhppoted/uhppoted-lib/config"
 )
 
 var GrantCmd = Grant{}

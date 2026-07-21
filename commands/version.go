@@ -1,8 +1,8 @@
 package commands
 
 import (
+	"codeberg.org/uhppoted/uhppoted-core/uhppote"
 	"fmt"
-	"github.com/uhppoted/uhppote-core/uhppote"
 )
 
 // VersionCmd is an initialized Version command for the main() command list

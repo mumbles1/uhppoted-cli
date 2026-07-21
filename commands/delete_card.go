@@ -1,8 +1,8 @@
 package commands
 
 import (
+	"codeberg.org/uhppoted/uhppoted-lib/config"
 	"fmt"
-	"github.com/uhppoted/uhppoted-lib/config"
 )
 
 var DeleteCardCmd = DeleteCard{}

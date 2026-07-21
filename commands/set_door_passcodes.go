@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/uhppoted/uhppoted-lib/config"
+	"codeberg.org/uhppoted/uhppoted-lib/config"
 )
 
 // SetDoorPasscodes command variable for CLI command list.

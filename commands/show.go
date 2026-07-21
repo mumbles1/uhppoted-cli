@@ -1,9 +1,9 @@
 package commands
 
 import (
+	"codeberg.org/uhppoted/uhppoted-lib/acl"
+	"codeberg.org/uhppoted/uhppoted-lib/config"
 	"fmt"
-	"github.com/uhppoted/uhppoted-lib/acl"
-	"github.com/uhppoted/uhppoted-lib/config"
 	"sort"
 	"strings"
 )

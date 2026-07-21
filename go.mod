@@ -1,10 +1,10 @@
-module github.com/uhppoted/uhppote-cli
+module codeberg.org/uhppoted/uhppoted-cli
 
 go 1.26
 
 require (
-	github.com/uhppoted/uhppote-core v0.9.1-0.20260413153340-6648eb33ce77
-	github.com/uhppoted/uhppoted-lib v0.9.1-0.20260413153439-864cae69b6e0
+	codeberg.org/uhppoted/uhppoted-core v0.0.0-20260721152015-d2001b5e6cf9
+	codeberg.org/uhppoted/uhppoted-lib v0.0.0-20260721134957-2397d188319f
 )
 
-require golang.org/x/sys v0.43.0 // indirect
+require golang.org/x/sys v0.47.0 // indirect

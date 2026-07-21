@@ -1,8 +1,8 @@
 package commands
 
 import (
+	"codeberg.org/uhppoted/uhppoted-lib/config"
 	"fmt"
-	"github.com/uhppoted/uhppoted-lib/config"
 )
 
 // RestoreDefaultParameters command variable for CLI command list.

@@ -2,11 +2,11 @@ package commands
 
 import (
 	"bytes"
+	"codeberg.org/uhppoted/uhppoted-core/types"
+	"codeberg.org/uhppoted/uhppoted-lib/acl"
+	"codeberg.org/uhppoted/uhppoted-lib/config"
 	"flag"
 	"fmt"
-	"github.com/uhppoted/uhppote-core/types"
-	"github.com/uhppoted/uhppoted-lib/acl"
-	"github.com/uhppoted/uhppoted-lib/config"
 	"io"
 	"os"
 	"text/template"

@@ -32,14 +32,14 @@ clean:
 	rm -rf bin
 
 update:
-	go get -u github.com/uhppoted/uhppote-core@main
-	go get -u github.com/uhppoted/uhppoted-lib@main
+	go get -u codeberg.org/uhppoted/uhppoted-core@main
+	go get -u codeberg.org/uhppoted/uhppoted-lib@main
 	go mod tidy
 	go fix ./...
 
 update-release:
-	go get -u github.com/uhppoted/uhppote-core
-	go get -u github.com/uhppoted/uhppoted-lib
+	go get -u codeberg.org/uhppoted/uhppoted-core
+	go get -u codeberg.org/uhppoted/uhppoted-lib
 	go mod tidy
 	go fix ./...
 
@@ -108,8 +108,10 @@ publish: release
 	                               --draft --prerelease --title "$(VERSION)-beta" --notes-file release-notes.md
 
 debug: build
-	$(CLI) $(DEBUG) put-card 405419896 10058400 2025-01-01 2025-12-31 1,2,3,4 --first-card 1,4
+# 	$(CLI) $(DEBUG) put-card 405419896 10058400 2025-01-01 2025-12-31 1,2,3,4 --first-card 1,4
 # 	$(CLI) $(DEBUG) set-firstcard 405419896 4 08:30 16:45 normally-open normally-closed Monday,Tue,Thurs,Fri
+#	$(CLI) put-card 405419896 10058400 2026-01-01 2026-12-31 1,2,3,4 --first-card 3
+	./bin/uhppote-cli put-card 405419896 10058400 2026-01-01 2026-12-31 1,2,4 --first-card 4
 
 irl: build
 	$(CLI) set-time            423187757

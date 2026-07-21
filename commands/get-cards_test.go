@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"testing"
 
-	"github.com/uhppoted/uhppote-core/types"
+	"codeberg.org/uhppoted/uhppoted-core/types"
 )
 
 func TestGetCardsPrint(t *testing.T) {

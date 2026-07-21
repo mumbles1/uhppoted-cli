@@ -11,6 +11,7 @@
 3. Updated _put-card_ to include _firstcard_ permission.
 4. Updated _get-card_ to display '-' for no PIN and no firstcard privileges.
 5. Updated _get-cards_ to display '-' for no PIN and no firstcard privileges.
+6. Migrated from _github.com/uhppoted/uhppote-cli_ to _codeberg.org/uhppoted/uhppoted-cli_.
 
 
 ## [0.9.0](https://github.com/uhppoted/uhppote-cli/releases/tag/v0.9.0) - 2026-01-27

@@ -9,9 +9,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/uhppoted/uhppote-core/types"
-	"github.com/uhppoted/uhppote-core/uhppote"
-	"github.com/uhppoted/uhppoted-lib/config"
+	"codeberg.org/uhppoted/uhppoted-core/types"
+	"codeberg.org/uhppoted/uhppoted-core/uhppote"
+	"codeberg.org/uhppoted/uhppoted-lib/config"
 )
 
 func TestCommandNewContext(t *testing.T) {

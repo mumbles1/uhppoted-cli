@@ -32,7 +32,7 @@ Installation is straightforward - download the archive and extract it to a direc
 
 ### `uhppoted.conf`
 
-By default, `uhppote-cli` uses the communal `uhppoted.conf` configuration file shared by all the `uhppoted` project modules which is (_or will eventually be_) documented in [uhppoted](https://github.com/uhppoted/uhppoted). 
+By default, `uhppote-cli` uses the communal `uhppoted.conf` configuration file shared by all the `uhppoted` project modules which is (_or will eventually be_) documented in [uhppoted](https://codeberg.org/uhppoted/uhppoted). 
 
 A valid configuration file is required **only** for system configurations where controllers are not findable on the local LAN (i.e. cannot receive and reply to UDP broadcasts) or for use with the _ACL_ commands which do require a valid `uhppoted.conf` to resolve the door ID to controller + door number. For _device_ commands the configuration file will used if present otherwise the internal default configuration will be used.
 
@@ -42,21 +42,21 @@ An alternative configuration file can be specified with the `--config` command l
 uhppote-cli --config ./uhppote.mine get-device 4726234734
 ```
 
-A sample [uhppoted.conf](https://github.com/uhppoted/uhppoted/blob/master/runtime/simulation/405419896.conf) file is included in the `uhppoted` distribution.
+A sample [uhppoted.conf](https://codeberg.org/uhppoted/uhppoted/blob/master/runtime/simulation/405419896.conf) file is included in the `uhppoted` distribution.
 
 ### Building from source
 
 Assuming you have `Go` and `make` installed:
 
 ```
-git clone https://github.com/uhppoted/uhppote-cli.git
+git clone https://codeberg.org/uhppoted/uhppoted-cli.git
 cd uhppote-cli
 make build
 ```
 
 If you prefer not to use `make`:
 ```
-git clone https://github.com/uhppoted/uhppote-cli.git
+git clone https://codeberg.org/uhppoted/uhppoted-cli.git
 cd uhppote-cli
 mkdir bin
 go build -trimpath -o bin ./...
@@ -192,7 +192,7 @@ Retrieves a list of the controllers accessible on the local LAN (i.e. can receiv
 uhppote-cli [options] get-devices
 
   Options: 
-  --config      Sets the [uhppoted.conf](https://github.com/uhppoted/uhppoted/blob/master/documentation/uhppoted.conf/uhppoted.conf.md) file to use for controller configurations
+  --config      Sets the [uhppoted.conf](https://codeberg.org/uhppoted/uhppoted/blob/master/documentation/uhppoted.conf/uhppoted.conf.md) file to use for controller configurations
   --bind        Overrides the default (or configured) bind IP address for a command
   --broadcast   Overrides the default (or configured) broadcast IP address to which to send a command
   --listen      Overrides the default (or configured) listen IP address on which to listen for events
@@ -1595,7 +1595,7 @@ The ACL file must include a column for each controller + door configured in the 
 - N
 - time profile ID (e.g. 29)
 
-An [example ACL file](https://github.com/uhppoted/uhppoted/blob/master/runtime/simulation/405419896.acl) is included in the full `uhppoted` distribution, along with the matching [_conf_](https://github.com/uhppoted/uhppoted/blob/master/runtime/simulation/405419896.conf) file.
+An [example ACL file](https://codeberg.org/uhppoted/uhppoted/blob/master/runtime/simulation/405419896.acl) is included in the full `uhppoted` distribution, along with the matching [_conf_](https://codeberg.org/uhppoted/uhppoted/blob/master/runtime/simulation/405419896.conf) file.
 
 #### `grant`
 
@@ -1681,7 +1681,7 @@ Retrieves and displays the access permissions for a single card across the set o
 
 #### `load-acl`
 
-Loads the access permissions from an ACL file to the set of configured UHPPOTE controllers. A sample [ACL](https://github.com/uhppoted/uhppoted/blob/master/runtime/simulation/405419896.acl) file is included in the full 
+Loads the access permissions from an ACL file to the set of configured UHPPOTE controllers. A sample [ACL](https://codeberg.org/uhppoted/uhppoted/blob/master/runtime/simulation/405419896.acl) file is included in the full 
 `uhppoted` distribution.
 
 ```

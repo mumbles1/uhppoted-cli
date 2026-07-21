@@ -1,10 +1,10 @@
 package commands
 
 import (
+	"codeberg.org/uhppoted/uhppoted-lib/acl"
+	"codeberg.org/uhppoted/uhppoted-lib/config"
 	"flag"
 	"fmt"
-	"github.com/uhppoted/uhppoted-lib/acl"
-	"github.com/uhppoted/uhppoted-lib/config"
 	"strings"
 )
 

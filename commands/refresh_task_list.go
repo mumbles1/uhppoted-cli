@@ -3,7 +3,7 @@ package commands
 import (
 	"fmt"
 
-	"github.com/uhppoted/uhppoted-lib/config"
+	"codeberg.org/uhppoted/uhppoted-lib/config"
 )
 
 var RefreshTaskListCmd = RefreshTaskList{}

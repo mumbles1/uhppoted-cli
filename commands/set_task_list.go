@@ -6,9 +6,9 @@ import (
 	"os"
 	"time"
 
-	"github.com/uhppoted/uhppote-core/types"
-	"github.com/uhppoted/uhppoted-lib/config"
-	"github.com/uhppoted/uhppoted-lib/encoding/tsv"
+	"codeberg.org/uhppoted/uhppoted-core/types"
+	"codeberg.org/uhppoted/uhppoted-lib/config"
+	"codeberg.org/uhppoted/uhppoted-lib/encoding/tsv"
 )
 
 var SetTaskListCmd = SetTaskList{}
