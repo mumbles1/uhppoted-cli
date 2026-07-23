@@ -51,7 +51,7 @@ func (c *SetTime) Usage() string {
 }
 
 func (c *SetTime) Help() {
-	fmt.Println("Usage: uhppote-cli [options] set-time <serial number> [command options]")
+	fmt.Println("Usage: uhppoted-cli [options] set-time <serial number> [command options]")
 	fmt.Println()
 	fmt.Println(" Sets the controller date/time to the supplied time. Defaults to 'now'. Command format")
 	fmt.Println()
@@ -69,9 +69,9 @@ func (c *SetTime) Help() {
 	fmt.Println()
 	fmt.Println("  Examples:")
 	fmt.Println()
-	fmt.Println("    uhppote-cli set-time")
-	fmt.Println("    uhppote-cli set-time now")
-	fmt.Println("    uhppote-cli set-time '2019-01-12 20:15:32'")
+	fmt.Println("    uhppoted-cli set-time")
+	fmt.Println("    uhppoted-cli set-time now")
+	fmt.Println("    uhppoted-cli set-time '2019-01-12 20:15:32'")
 	fmt.Println()
 }
 

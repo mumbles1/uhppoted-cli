@@ -43,7 +43,7 @@ func (c *SetEventIndex) Usage() string {
 }
 
 func (c *SetEventIndex) Help() {
-	fmt.Println("Usage: uhppote-cli [options] set-event-index <serial number> <index>")
+	fmt.Println("Usage: uhppoted-cli [options] set-event-index <serial number> <index>")
 	fmt.Println()
 	fmt.Println(" Sets the event index")
 	fmt.Println()
@@ -52,7 +52,7 @@ func (c *SetEventIndex) Help() {
 	fmt.Println()
 	fmt.Println("  Examples:")
 	fmt.Println()
-	fmt.Println("    uhppote-cli set-event-index 12345678 15")
+	fmt.Println("    uhppoted-cli set-event-index 12345678 15")
 	fmt.Println()
 }
 

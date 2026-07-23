@@ -257,7 +257,7 @@ func usage() {
 	fmt.Println("  Commands:")
 	fmt.Println()
 	fmt.Printf(format, "help", "Displays this message")
-	fmt.Printf(format, "", "For help on a specific command use 'uhppote-cli help <command>'")
+	fmt.Printf(format, "", "For help on a specific command use 'uhppoted-cli help <command>'")
 	fmt.Println()
 
 	for _, c := range cli {

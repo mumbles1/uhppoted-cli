@@ -68,7 +68,7 @@ func (c *SetAddress) Usage() string {
 }
 
 func (c *SetAddress) Help() {
-	fmt.Println("Usage: uhppote-cli [options] set-address <serial number> <address> [mask] [gateway]")
+	fmt.Println("Usage: uhppoted-cli [options] set-address <serial number> <address> [mask] [gateway]")
 	fmt.Println()
 	fmt.Println(" Sets the controller IP address, subnet mask and gateway address")
 	fmt.Println()
@@ -79,9 +79,9 @@ func (c *SetAddress) Help() {
 	fmt.Println()
 	fmt.Println("  Examples:")
 	fmt.Println()
-	fmt.Println("    uhppote-cli set-address 12345678  192.168.1.100")
-	fmt.Println("    uhppote-cli set-address 12345678  192.168.1.100  255.255.255.0")
-	fmt.Println("    uhppote-cli set-address 12345678  192.168.1.100  255.255.255.0  0.0.0.0")
+	fmt.Println("    uhppoted-cli set-address 12345678  192.168.1.100")
+	fmt.Println("    uhppoted-cli set-address 12345678  192.168.1.100  255.255.255.0")
+	fmt.Println("    uhppoted-cli set-address 12345678  192.168.1.100  255.255.255.0  0.0.0.0")
 	fmt.Println()
 }
 

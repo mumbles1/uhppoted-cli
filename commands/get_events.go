@@ -56,7 +56,7 @@ func (c *GetEvents) Usage() string {
 }
 
 func (c *GetEvents) Help() {
-	fmt.Println("Usage: uhppote-cli [options] get-events <serial number>")
+	fmt.Println("Usage: uhppoted-cli [options] get-events <serial number>")
 	fmt.Println()
 	fmt.Println(" Retrieves the indices of the first and last' events stored in the controller event buffer")
 	fmt.Println(" The controller event buffer is implemented as a ring buffer with capacity for (apparently)")
@@ -67,7 +67,7 @@ func (c *GetEvents) Help() {
 	fmt.Println()
 	fmt.Println("  Examples:")
 	fmt.Println()
-	fmt.Println("    uhppote-cli get-events 12345678")
+	fmt.Println("    uhppoted-cli get-events 12345678")
 	fmt.Println()
 	fmt.Println("    > 12345678  10  71")
 	fmt.Println()

@@ -212,7 +212,7 @@ func (c *CompareACL) Usage() string {
 }
 
 func (c *CompareACL) Help() {
-	fmt.Println("Usage: uhppote-cli [options] compare-acl <TSV file> <report file>")
+	fmt.Println("Usage: uhppoted-cli [options] compare-acl <TSV file> <report file>")
 	fmt.Println()
 	fmt.Println(" Compares the card lists in the configurated controllers to the authoritative access control list in the TSV file")
 	fmt.Println(" Duplicate card numbers are ignored (with a warning message)")
@@ -244,8 +244,8 @@ func (c *CompareACL) Help() {
 	fmt.Println()
 	fmt.Println("  Examples:")
 	fmt.Println()
-	fmt.Println("    uhppote-cli compare-acl \"uhppote-2023-03-07.tsv\"")
-	fmt.Println("    uhppote-cli --debug --config .config compare-acl --with-pin \"uhppote-2023-03-07.tsv\"")
+	fmt.Println("    uhppoted-cli compare-acl \"uhppote-2023-03-07.tsv\"")
+	fmt.Println("    uhppoted-cli --debug --config .config compare-acl --with-pin \"uhppote-2023-03-07.tsv\"")
 	fmt.Println()
 }
 

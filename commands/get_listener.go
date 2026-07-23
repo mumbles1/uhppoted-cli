@@ -39,7 +39,7 @@ func (c *GetListener) Usage() string {
 }
 
 func (c *GetListener) Help() {
-	fmt.Println("Usage: uhppote-cli [options] get-listener <serial number>")
+	fmt.Println("Usage: uhppoted-cli [options] get-listener <serial number>")
 	fmt.Println()
 	fmt.Println(" Retrieves the configured IP address:port to which the controller sends events. Also")
 	fmt.Println(" retrieves the controller auto-send interval (if not zero).")
@@ -48,7 +48,7 @@ func (c *GetListener) Help() {
 	fmt.Println()
 	fmt.Println("  Example:")
 	fmt.Println()
-	fmt.Println("    uhppote-cli get-listener 405419896")
+	fmt.Println("    uhppoted-cli get-listener 405419896")
 	fmt.Println()
 }
 

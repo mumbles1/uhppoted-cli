@@ -40,7 +40,7 @@ func (c *RefreshTaskList) Usage() string {
 }
 
 func (c *RefreshTaskList) Help() {
-	fmt.Println("Usage: uhppote-cli [options] refresh-task-list <serial number>")
+	fmt.Println("Usage: uhppoted-cli [options] refresh-task-list <serial number>")
 	fmt.Println()
 	fmt.Println(" Refreshes an updated task list on a controller")
 	fmt.Println()
@@ -54,7 +54,7 @@ func (c *RefreshTaskList) Help() {
 	fmt.Println()
 	fmt.Println("  Examples:")
 	fmt.Println()
-	fmt.Println("    uhppote-cli --debug refresh-task-list 9876543210")
+	fmt.Println("    uhppoted-cli --debug refresh-task-list 9876543210")
 	fmt.Println()
 }
 

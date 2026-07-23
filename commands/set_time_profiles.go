@@ -68,7 +68,7 @@ func (c *SetTimeProfiles) Usage() string {
 }
 
 func (c *SetTimeProfiles) Help() {
-	fmt.Println("Usage: uhppote-cli [options] set-time-profiles <serial number> <file>")
+	fmt.Println("Usage: uhppoted-cli [options] set-time-profiles <serial number> <file>")
 	fmt.Println()
 	fmt.Println(" Writes the time profiles defined in a TSV file to a controller. Existing time profiles are not cleared")
 	fmt.Println(" but will be overwritten if redefined in the TSV file.")
@@ -84,7 +84,7 @@ func (c *SetTimeProfiles) Help() {
 	fmt.Println()
 	fmt.Println("  Examples:")
 	fmt.Println()
-	fmt.Println("    uhppote-cli set-time-profiles 9876543210 9876543210.tsv")
+	fmt.Println("    uhppoted-cli set-time-profiles 9876543210 9876543210.tsv")
 	fmt.Println()
 }
 

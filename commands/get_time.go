@@ -37,7 +37,7 @@ func (c *GetTime) Usage() string {
 }
 
 func (c *GetTime) Help() {
-	fmt.Println("Usage: uhppote-cli [options] get-time <serial number> [command options]")
+	fmt.Println("Usage: uhppoted-cli [options] get-time <serial number> [command options]")
 	fmt.Println()
 	fmt.Println(" Retrieves the current date/time referenced to the local timezone for the controller")
 	fmt.Println()

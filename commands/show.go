@@ -73,7 +73,7 @@ func (c *Show) Usage() string {
 }
 
 func (c *Show) Help() {
-	fmt.Println("Usage: uhppote-cli [options] show <card number>")
+	fmt.Println("Usage: uhppoted-cli [options] show <card number>")
 	fmt.Println()
 	fmt.Println(" Lists the access permissions for a card")
 	fmt.Println()
@@ -87,7 +87,7 @@ func (c *Show) Help() {
 	fmt.Println()
 	fmt.Println("  Examples:")
 	fmt.Println()
-	fmt.Println("    uhppote-cli show 918273645")
+	fmt.Println("    uhppoted-cli show 918273645")
 	fmt.Println()
 }
 

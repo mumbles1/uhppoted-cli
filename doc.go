@@ -3,7 +3,7 @@
 // that can be found in the LICENSE file.
 
 /*
-Package uhppote-cli implements a command line interface to the UHPPOTE TCP/IP Wiegand-26 access controllers.
+Package uhppoted-cli implements a command line interface to the UHPPOTE TCP/IP Wiegand-26 access controllers.
 
 The CLI provides a basic set of commands to:
 

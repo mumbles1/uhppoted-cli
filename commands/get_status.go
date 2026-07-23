@@ -37,7 +37,7 @@ func (c *GetStatus) Usage() string {
 }
 
 func (c *GetStatus) Help() {
-	fmt.Println("Usage: uhppote-cli [options] get-status <serial number>")
+	fmt.Println("Usage: uhppoted-cli [options] get-status <serial number>")
 	fmt.Println()
 	fmt.Println(" Retrieves the controller status")
 	fmt.Println()
@@ -45,7 +45,7 @@ func (c *GetStatus) Help() {
 	fmt.Println()
 	fmt.Println("  Examples:")
 	fmt.Println()
-	fmt.Println("    uhppote-cli get-status 12345678")
+	fmt.Println("    uhppoted-cli get-status 12345678")
 	fmt.Println()
 }
 

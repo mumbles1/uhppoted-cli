@@ -161,7 +161,7 @@ func (c *LoadACL) Usage() string {
 }
 
 func (c *LoadACL) Help() {
-	fmt.Println("Usage: uhppote-cli [options] load-acl [--with-pin] [--strict] <TSV file>")
+	fmt.Println("Usage: uhppoted-cli [options] load-acl [--with-pin] [--strict] <TSV file>")
 	fmt.Println()
 	fmt.Println(" Downloads the access control list in the TSV file to the access controllers defined in the configuration")
 	fmt.Println(" file. Duplicate card numbers are ignored (or deleted if they exist) with a warning message unless the")
@@ -196,8 +196,8 @@ func (c *LoadACL) Help() {
 	fmt.Println()
 	fmt.Println("  Examples:")
 	fmt.Println()
-	fmt.Println("    uhppote-cli load-acl \"uhppote-2023-03-07.tsv\"")
-	fmt.Println("    uhppote-cli --debug --config .config load-acl --with-pin \"uhppote-2023-03-07.tsv\"")
+	fmt.Println("    uhppoted-cli load-acl \"uhppote-2023-03-07.tsv\"")
+	fmt.Println("    uhppoted-cli --debug --config .config load-acl --with-pin \"uhppote-2023-03-07.tsv\"")
 	fmt.Println()
 }
 

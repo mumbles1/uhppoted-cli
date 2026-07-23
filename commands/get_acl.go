@@ -119,7 +119,7 @@ func (c *GetACL) Usage() string {
 }
 
 func (c *GetACL) Help() {
-	fmt.Println("Usage: uhppote-cli [options] get-acl <TSV file>")
+	fmt.Println("Usage: uhppoted-cli [options] get-acl <TSV file>")
 	fmt.Println()
 	fmt.Println(" Retrieves the cards from the access controllers defined in the configuration file, reformats as")
 	fmt.Println(" an access control list and writes to the specified TSV file")
@@ -136,9 +136,9 @@ func (c *GetACL) Help() {
 	fmt.Println()
 	fmt.Println("  Examples:")
 	fmt.Println()
-	fmt.Println("    uhppote-cli get-acl")
-	fmt.Println("    uhppote-cli --debug get-acl \"uhppote.tsv\"")
-	fmt.Println("    uhppote-cli --debug --config .config get-acl --with-pin \"uhppote.tsv\"")
+	fmt.Println("    uhppoted-cli get-acl")
+	fmt.Println("    uhppoted-cli --debug get-acl \"uhppote.tsv\"")
+	fmt.Println("    uhppoted-cli --debug --config .config get-acl --with-pin \"uhppote.tsv\"")
 	fmt.Println()
 }
 

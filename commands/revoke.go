@@ -66,7 +66,7 @@ func (c *Revoke) Usage() string {
 }
 
 func (c *Revoke) Help() {
-	fmt.Println("Usage: uhppote-cli [options] revoke <card number> <doors>")
+	fmt.Println("Usage: uhppoted-cli [options] revoke <card number> <doors>")
 	fmt.Println()
 	fmt.Println(" Revokes access permissions for a card")
 	fmt.Println()
@@ -87,7 +87,7 @@ func (c *Revoke) Help() {
 	fmt.Println()
 	fmt.Println("  Examples:")
 	fmt.Println()
-	fmt.Println("    uhppote-cli -debug --config .config revoke 918273645 Front Door, Workshop")
+	fmt.Println("    uhppoted-cli -debug --config .config revoke 918273645 Front Door, Workshop")
 	fmt.Println()
 }
 

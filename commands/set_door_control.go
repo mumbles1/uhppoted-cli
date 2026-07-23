@@ -63,7 +63,7 @@ func (c *SetDoorControl) Usage() string {
 }
 
 func (c *SetDoorControl) Help() {
-	fmt.Println("Usage: uhppote-cli [options] set-door-control <serial number> <door> <state>")
+	fmt.Println("Usage: uhppoted-cli [options] set-door-control <serial number> <door> <state>")
 	fmt.Println()
 	fmt.Println(" Sets the door control state")
 	fmt.Println()
@@ -73,7 +73,7 @@ func (c *SetDoorControl) Help() {
 	fmt.Println()
 	fmt.Println("  Examples:")
 	fmt.Println()
-	fmt.Println("    uhppote-cli set-door-control 12345678 3 'normally open'")
+	fmt.Println("    uhppoted-cli set-door-control 12345678 3 'normally open'")
 	fmt.Println()
 }
 

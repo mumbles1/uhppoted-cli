@@ -33,7 +33,7 @@ func (c *GetAntiPassback) Usage() string {
 }
 
 func (c *GetAntiPassback) Help() {
-	fmt.Println("Usage: uhppote-cli [options] get-antipassback <serial number> [command options]")
+	fmt.Println("Usage: uhppoted-cli [options] get-antipassback <serial number> [command options]")
 	fmt.Println()
 	fmt.Println(" Retrieves the controller anti-passback mode")
 	fmt.Println()

@@ -149,7 +149,7 @@ func (c *PutCard) Usage() string {
 }
 
 func (c *PutCard) Help() {
-	fmt.Println("Usage: uhppote-cli [options] put-card <serial number> <card number> <start date> <end date> <doors>")
+	fmt.Println("Usage: uhppoted-cli [options] put-card <serial number> <card number> <start date> <end date> <doors>")
 	fmt.Println()
 	fmt.Println(" Adds (or updates) a card to the list of the cards managed by a controller")
 	fmt.Println()
@@ -167,7 +167,7 @@ func (c *PutCard) Help() {
 	fmt.Println()
 	fmt.Println("  Examples:")
 	fmt.Println()
-	fmt.Println("    uhppote-cli put-card 12345678 918273645 2020-01-01 2020-12-31 1,2,4")
+	fmt.Println("    uhppoted-cli put-card 12345678 918273645 2020-01-01 2020-12-31 1,2,4")
 	fmt.Println()
 }
 

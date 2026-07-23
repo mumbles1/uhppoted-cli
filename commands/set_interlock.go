@@ -45,7 +45,7 @@ func (c *SetInterlock) Usage() string {
 }
 
 func (c *SetInterlock) Help() {
-	fmt.Println("Usage: uhppote-cli [options] set-interlock <serial number> <interlock>")
+	fmt.Println("Usage: uhppoted-cli [options] set-interlock <serial number> <interlock>")
 	fmt.Println()
 	fmt.Println(" Sets the door interlock")
 	fmt.Println()
@@ -60,7 +60,7 @@ func (c *SetInterlock) Help() {
 	fmt.Println()
 	fmt.Println("  Examples:")
 	fmt.Println()
-	fmt.Println("    uhppote-cli set-interlock 405419896 1&2&3")
+	fmt.Println("    uhppoted-cli set-interlock 405419896 1&2&3")
 	fmt.Println()
 }
 

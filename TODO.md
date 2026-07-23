@@ -67,7 +67,7 @@
    ```
    -- get-event
    #/bin/bash
-   ./bin/uhppote-cli get-event $1
+   ./bin/uhppoted-cli get-event $1
 
    -- get-events
    #/bin/bash

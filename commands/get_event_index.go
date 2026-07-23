@@ -38,7 +38,7 @@ func (c *GetEventIndex) Usage() string {
 }
 
 func (c *GetEventIndex) Help() {
-	fmt.Println("Usage: uhppote-cli [options] get-event-index <serial number>")
+	fmt.Println("Usage: uhppoted-cli [options] get-event-index <serial number>")
 	fmt.Println()
 	fmt.Println(" Retrieves the current event record index")
 	fmt.Println()
@@ -46,7 +46,7 @@ func (c *GetEventIndex) Help() {
 	fmt.Println()
 	fmt.Println("  Examples:")
 	fmt.Println()
-	fmt.Println("    uhppote-cli get-event-index 12345678")
+	fmt.Println("    uhppoted-cli get-event-index 12345678")
 	fmt.Println()
 }
 

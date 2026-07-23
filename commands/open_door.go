@@ -46,7 +46,7 @@ func (c *OpenDoor) Usage() string {
 }
 
 func (c *OpenDoor) Help() {
-	fmt.Println("Usage: uhppote-cli [options] open <serial number> <door>")
+	fmt.Println("Usage: uhppoted-cli [options] open <serial number> <door>")
 	fmt.Println()
 	fmt.Println(" Opens the requested door:")
 	fmt.Println()
@@ -55,7 +55,7 @@ func (c *OpenDoor) Help() {
 	fmt.Println()
 	fmt.Println("  Examples:")
 	fmt.Println()
-	fmt.Println("    uhppote-cli open 12345678 2")
+	fmt.Println("    uhppoted-cli open 12345678 2")
 	fmt.Println()
 }
 

@@ -77,7 +77,7 @@ func (c *SetPCControl) Usage() string {
 
 // Outputs the 'set-pc-control' command help for the CLI interface.
 func (c *SetPCControl) Help() {
-	fmt.Println("Usage: uhppote-cli [options] set-pc-control <serial number> <enable>")
+	fmt.Println("Usage: uhppoted-cli [options] set-pc-control <serial number> <enable>")
 	fmt.Println()
 	fmt.Println(" Enables or disables remote host access control.")
 	fmt.Println()
@@ -97,9 +97,9 @@ func (c *SetPCControl) Help() {
 	fmt.Println()
 	fmt.Println("  Examples:")
 	fmt.Println()
-	fmt.Println("    uhppote-cli --debug --config .config set-pc-control 12345678")
-	fmt.Println("    uhppote-cli --debug --config .config set-pc-control 12345678 true")
-	fmt.Println("    uhppote-cli --debug --config .config set-pc-control 12345678 false")
+	fmt.Println("    uhppoted-cli --debug --config .config set-pc-control 12345678")
+	fmt.Println("    uhppoted-cli --debug --config .config set-pc-control 12345678 true")
+	fmt.Println("    uhppoted-cli --debug --config .config set-pc-control 12345678 false")
 	fmt.Println()
 }
 

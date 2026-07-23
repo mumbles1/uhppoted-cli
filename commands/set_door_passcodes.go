@@ -67,7 +67,7 @@ func (c *SetDoorPasscodes) Usage() string {
 
 // Outputs the 'set-door-passcodes' command help for the CLI interface.
 func (c *SetDoorPasscodes) Help() {
-	fmt.Println("Usage: uhppote-cli [options] set-door-passcodes <serial number> <door> <passcodes>")
+	fmt.Println("Usage: uhppoted-cli [options] set-door-passcodes <serial number> <door> <passcodes>")
 	fmt.Println()
 	fmt.Println(" Sets up to four supervisor passcodes for a door.")
 	fmt.Println()
@@ -86,7 +86,7 @@ func (c *SetDoorPasscodes) Help() {
 	fmt.Println()
 	fmt.Println("  Examples:")
 	fmt.Println()
-	fmt.Println("    uhppote-cli --debug --config .config set-door-passcodes 12345678 3 12345,999999,54321")
+	fmt.Println("    uhppoted-cli --debug --config .config set-door-passcodes 12345678 3 12345,999999,54321")
 	fmt.Println()
 }
 

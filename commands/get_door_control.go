@@ -43,7 +43,7 @@ func (c *GetDoorControl) Usage() string {
 }
 
 func (c *GetDoorControl) Help() {
-	fmt.Println("Usage: uhppote-cli [options] get-door-control <serial number> <door>")
+	fmt.Println("Usage: uhppoted-cli [options] get-door-control <serial number> <door>")
 	fmt.Println()
 	fmt.Println(" Retrieves the door control state ('normally open', 'normally closed' or 'controlled')")
 	fmt.Println()
@@ -52,7 +52,7 @@ func (c *GetDoorControl) Help() {
 	fmt.Println()
 	fmt.Println("  Examples:")
 	fmt.Println()
-	fmt.Println("    uhppote-cli get-door-control 12345678 3")
+	fmt.Println("    uhppoted-cli get-door-control 12345678 3")
 	fmt.Println()
 }
 

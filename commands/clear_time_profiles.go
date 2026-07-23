@@ -40,7 +40,7 @@ func (c *ClearTimeProfiles) Usage() string {
 }
 
 func (c *ClearTimeProfiles) Help() {
-	fmt.Println("Usage: uhppote-cli [options] clear-time-profiles <serial number>")
+	fmt.Println("Usage: uhppoted-cli [options] clear-time-profiles <serial number>")
 	fmt.Println()
 	fmt.Println(" Clears all time profiles from the controller")
 	fmt.Println()
@@ -54,7 +54,7 @@ func (c *ClearTimeProfiles) Help() {
 	fmt.Println()
 	fmt.Println("  Examples:")
 	fmt.Println()
-	fmt.Println("    uhppote-cli --debug clear-time-profiles 9876543210")
+	fmt.Println("    uhppoted-cli --debug clear-time-profiles 9876543210")
 	fmt.Println()
 }
 

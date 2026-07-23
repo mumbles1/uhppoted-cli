@@ -44,7 +44,7 @@ func (c *SetFirstCard) Usage() string {
 }
 
 func (c *SetFirstCard) Help() {
-	fmt.Println("Usage: uhppote-cli [options] set-firstcard <serial-number> <door> <start> <end> <active> <inactive> <weekdays> [command options]")
+	fmt.Println("Usage: uhppoted-cli [options] set-firstcard <serial-number> <door> <start> <end> <active> <inactive> <weekdays> [command options]")
 	fmt.Println()
 	fmt.Println(" Sets the controller first card mode")
 	fmt.Println()

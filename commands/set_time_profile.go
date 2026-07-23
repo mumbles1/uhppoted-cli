@@ -202,7 +202,7 @@ func (c *SetTimeProfile) Usage() string {
 }
 
 func (c *SetTimeProfile) Help() {
-	fmt.Println("Usage: uhppote-cli [options] set-time-profile <serial-number> <profile-ID> <active> <weekdays> <segments> <linked>")
+	fmt.Println("Usage: uhppoted-cli [options] set-time-profile <serial-number> <profile-ID> <active> <weekdays> <segments> <linked>")
 	fmt.Println()
 	fmt.Println(" Retrieves the time profile associated with a profile ID")
 	fmt.Println()
@@ -221,7 +221,7 @@ func (c *SetTimeProfile) Help() {
 	fmt.Println()
 	fmt.Println("  Examples:")
 	fmt.Println()
-	fmt.Println("    uhppote-cli set-time-profile 9876543210 7 2021-04-01:2021-12-31 Mon,Wed,Fri 09:30-11:15,,15:45-17:30 27")
+	fmt.Println("    uhppoted-cli set-time-profile 9876543210 7 2021-04-01:2021-12-31 Mon,Wed,Fri 09:30-11:15,,15:45-17:30 27")
 	fmt.Println()
 }
 

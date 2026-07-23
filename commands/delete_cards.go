@@ -39,7 +39,7 @@ func (c *DeleteCards) Usage() string {
 }
 
 func (c *DeleteCards) Help() {
-	fmt.Println("Usage: uhppote-cli [options] delete-all <serial number>")
+	fmt.Println("Usage: uhppoted-cli [options] delete-all <serial number>")
 	fmt.Println()
 	fmt.Println(" Removes all cards from the controller internal card list")
 	fmt.Println()
@@ -53,7 +53,7 @@ func (c *DeleteCards) Help() {
 	fmt.Println()
 	fmt.Println("  Examples:")
 	fmt.Println()
-	fmt.Println("    uhppote-cli --debug --config .config delete-all 12345678")
+	fmt.Println("    uhppoted-cli --debug --config .config delete-all 12345678")
 	fmt.Println()
 }
 

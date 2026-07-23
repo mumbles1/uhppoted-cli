@@ -40,7 +40,7 @@ func (c *GetDevice) Usage() string {
 }
 
 func (c *GetDevice) Help() {
-	fmt.Println("Usage: uhppote-cli [options] get-device <serial number>")
+	fmt.Println("Usage: uhppoted-cli [options] get-device <serial number>")
 	fmt.Println()
 	fmt.Println("  serial-number  (required) controller serial number")
 	fmt.Println()
@@ -53,7 +53,7 @@ func (c *GetDevice) Help() {
 	fmt.Println()
 	fmt.Println("  Example:")
 	fmt.Println()
-	fmt.Println("    uhppote-cli get-device 12345678")
+	fmt.Println("    uhppoted-cli get-device 12345678")
 	fmt.Println()
 	fmt.Println("  Options:")
 	fmt.Println()

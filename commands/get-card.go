@@ -52,7 +52,7 @@ func (c *GetCard) Usage() string {
 }
 
 func (c *GetCard) Help() {
-	fmt.Println("Usage: uhppote-cli [options] get-card <serial number> <card number>")
+	fmt.Println("Usage: uhppoted-cli [options] get-card <serial number> <card number>")
 	fmt.Println()
 	fmt.Println(" Retrieves the access granted for the card number from  the controller card list")
 	fmt.Println()
@@ -61,7 +61,7 @@ func (c *GetCard) Help() {
 	fmt.Println()
 	fmt.Println("  Examples:")
 	fmt.Println()
-	fmt.Println("    uhppote-cli get-card 405419896 10058400")
+	fmt.Println("    uhppoted-cli get-card 405419896 10058400")
 	fmt.Println()
 }
 

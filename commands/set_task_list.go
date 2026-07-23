@@ -93,7 +93,7 @@ func (c *SetTaskList) Usage() string {
 }
 
 func (c *SetTaskList) Help() {
-	fmt.Println("Usage: uhppote-cli [options] set-task-list <serial number> <file>")
+	fmt.Println("Usage: uhppoted-cli [options] set-task-list <serial number> <file>")
 	fmt.Println()
 	fmt.Println(" Clears any existing task defined on a controller, adds the task defined in the file and then invokes")
 	fmt.Println(" refresh-tasks to activate the new task list.")
@@ -109,7 +109,7 @@ func (c *SetTaskList) Help() {
 	fmt.Println()
 	fmt.Println("  Examples:")
 	fmt.Println()
-	fmt.Println("    uhppote-cli set-task-list 9876543210 tasks.tsv")
+	fmt.Println("    uhppoted-cli set-task-list 9876543210 tasks.tsv")
 	fmt.Println()
 }
 

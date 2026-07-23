@@ -67,7 +67,7 @@ func (c *AddTask) Usage() string {
 }
 
 func (c *AddTask) Help() {
-	fmt.Println("Usage: uhppote-cli [options] add-task <serial-number> <door> <task> <active> <weekdays> <start> <cards>")
+	fmt.Println("Usage: uhppoted-cli [options] add-task <serial-number> <door> <task> <active> <weekdays> <start> <cards>")
 	fmt.Println()
 	fmt.Println(" Adds a new task to a controller's task list")
 	fmt.Println()
@@ -103,9 +103,9 @@ func (c *AddTask) Help() {
 	fmt.Println()
 	fmt.Println("  Examples:")
 	fmt.Println()
-	fmt.Println("    uhppote-cli add-task 9876543210 3 1 2021-04-01:2021-12-31 Mon,Wed,Fri 09:30")
-	fmt.Println("    uhppote-cli add-task 9876543210 'door controlled'   1 2021-04-01:2021-12-31 Mon,Wed,Fri 09:30")
-	fmt.Println("    uhppote-cli add-task 9876543210 'enable more cards' 1 2021-04-01:2021-12-31 Mon,Wed,Fri 09:30 27")
+	fmt.Println("    uhppoted-cli add-task 9876543210 3 1 2021-04-01:2021-12-31 Mon,Wed,Fri 09:30")
+	fmt.Println("    uhppoted-cli add-task 9876543210 'door controlled'   1 2021-04-01:2021-12-31 Mon,Wed,Fri 09:30")
+	fmt.Println("    uhppoted-cli add-task 9876543210 'enable more cards' 1 2021-04-01:2021-12-31 Mon,Wed,Fri 09:30 27")
 	fmt.Println()
 }
 

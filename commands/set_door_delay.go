@@ -53,7 +53,7 @@ func (c *SetDoorDelay) Usage() string {
 }
 
 func (c *SetDoorDelay) Help() {
-	fmt.Println("Usage: uhppote-cli [options] set-door-delay <serial number> <door> <delay>")
+	fmt.Println("Usage: uhppoted-cli [options] set-door-delay <serial number> <door> <delay>")
 	fmt.Println()
 	fmt.Println(" Sets the door open delay (in seconds), independently of the door control state")
 	fmt.Println()
@@ -63,7 +63,7 @@ func (c *SetDoorDelay) Help() {
 	fmt.Println()
 	fmt.Println("  Examples:")
 	fmt.Println()
-	fmt.Println("    uhppote-cli set-door-delay 12345678 3 15")
+	fmt.Println("    uhppoted-cli set-door-delay 12345678 3 15")
 	fmt.Println()
 }
 

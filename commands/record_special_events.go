@@ -71,7 +71,7 @@ func (c *RecordSpecialEvents) Usage() string {
 
 // Outputs the 'record-special-events' command help for the CLI interface.
 func (c *RecordSpecialEvents) Help() {
-	fmt.Println("Usage: uhppote-cli [options] record-special-events <serial number> <enable>")
+	fmt.Println("Usage: uhppoted-cli [options] record-special-events <serial number> <enable>")
 	fmt.Println()
 	fmt.Println(" Enables or disables door and pushbutton events")
 	fmt.Println()
@@ -86,7 +86,7 @@ func (c *RecordSpecialEvents) Help() {
 	fmt.Println()
 	fmt.Println("  Examples:")
 	fmt.Println()
-	fmt.Println("    uhppote-cli --debug --config .config record-special-events 12345678 true")
+	fmt.Println("    uhppoted-cli --debug --config .config record-special-events 12345678 true")
 	fmt.Println()
 }
 

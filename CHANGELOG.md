@@ -4,6 +4,7 @@
 
 ### Added
 1. `set-firstcard` command to set the _first card_ swipe configuration.
+2. Created parallel _uhppoted-cli_ executable to match renamed project.
 
 ### Updated
 1. Updated to Go 1.26.

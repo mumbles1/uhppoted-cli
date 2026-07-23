@@ -44,7 +44,7 @@ func (c *SetListener) Usage() string {
 }
 
 func (c *SetListener) Help() {
-	fmt.Println("Usage: uhppote-cli [options] set-listener <serial number> <address:port> [interval]")
+	fmt.Println("Usage: uhppoted-cli [options] set-listener <serial number> <address:port> [interval]")
 	fmt.Println()
 	fmt.Println(" Sets the host address to which the controller sends access events")
 	fmt.Println()
@@ -56,8 +56,8 @@ func (c *SetListener) Help() {
 	fmt.Println()
 	fmt.Println("  Examples:")
 	fmt.Println()
-	fmt.Println("    uhppote-cli set-listener 12345678  192.168.1.100:54321")
-	fmt.Println("    uhppote-cli set-listener 12345678  192.168.1.100:54321 15")
+	fmt.Println("    uhppoted-cli set-listener 12345678  192.168.1.100:54321")
+	fmt.Println("    uhppoted-cli set-listener 12345678  192.168.1.100:54321 15")
 	fmt.Println()
 }
 

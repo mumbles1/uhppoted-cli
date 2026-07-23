@@ -40,7 +40,7 @@ func (c *ClearTaskList) Usage() string {
 }
 
 func (c *ClearTaskList) Help() {
-	fmt.Println("Usage: uhppote-cli [options] clear-task-list <serial number>")
+	fmt.Println("Usage: uhppoted-cli [options] clear-task-list <serial number>")
 	fmt.Println()
 	fmt.Println(" Clears all tasks from the controller")
 	fmt.Println()
@@ -54,7 +54,7 @@ func (c *ClearTaskList) Help() {
 	fmt.Println()
 	fmt.Println("  Examples:")
 	fmt.Println()
-	fmt.Println("    uhppote-cli --debug clear-task-list 9876543210")
+	fmt.Println("    uhppoted-cli --debug clear-task-list 9876543210")
 	fmt.Println()
 }
 

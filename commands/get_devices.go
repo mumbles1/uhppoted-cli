@@ -111,7 +111,7 @@ func (c *GetDevices) Usage() string {
 }
 
 func (c *GetDevices) Help() {
-	fmt.Println("Usage: uhppote-cli [options] get-devices [command options]")
+	fmt.Println("Usage: uhppoted-cli [options] get-devices [command options]")
 	fmt.Println()
 	fmt.Println(" Searches the local network for UHPPOTE access control boards reponding to a poll")
 	fmt.Println(" on the default UDP port 60000. Returns a list of boards one per line in the format:")

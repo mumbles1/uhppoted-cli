@@ -59,7 +59,7 @@ func (c *ActivateKeypads) Usage() string {
 }
 
 func (c *ActivateKeypads) Help() {
-	fmt.Println("Usage: uhppote-cli [options] activate-keypads <serial number> <doors>")
+	fmt.Println("Usage: uhppoted-cli [options] activate-keypads <serial number> <doors>")
 	fmt.Println()
 	fmt.Println(" Activates the keypads for the doors (unlisted keypads are deactivated)")
 	fmt.Println()
@@ -68,7 +68,7 @@ func (c *ActivateKeypads) Help() {
 	fmt.Println()
 	fmt.Println("  Example:")
 	fmt.Println()
-	fmt.Println("    uhppote-cli activate-keypads 405419896 1,4")
+	fmt.Println("    uhppoted-cli activate-keypads 405419896 1,4")
 	fmt.Println()
 	fmt.Println("    (activates keypads on door 1 and 4, deactivates keypads on doors 2 and 3)")
 	fmt.Println()

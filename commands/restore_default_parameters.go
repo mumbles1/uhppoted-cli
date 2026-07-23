@@ -49,7 +49,7 @@ func (c *RestoreDefaultParameters) Usage() string {
 
 // Outputs the 'restore-default-parameters' command help for the CLI interface.
 func (c *RestoreDefaultParameters) Help() {
-	fmt.Println("Usage: uhppote-cli [options] restore-default-parameters <serial number>")
+	fmt.Println("Usage: uhppoted-cli [options] restore-default-parameters <serial number>")
 	fmt.Println()
 	fmt.Println(" Resets a controller to the manufacturer default configuration")
 	fmt.Println()
@@ -63,7 +63,7 @@ func (c *RestoreDefaultParameters) Help() {
 	fmt.Println()
 	fmt.Println("  Examples:")
 	fmt.Println()
-	fmt.Println("    uhppote-cli --debug --config .config restore-default-parameters 405419896")
+	fmt.Println("    uhppoted-cli --debug --config .config restore-default-parameters 405419896")
 	fmt.Println()
 }
 

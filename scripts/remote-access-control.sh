@@ -2,7 +2,7 @@
 # 
 # Usage:
 # 
-#   ./scripts/remote-access-control.sh ./bin/uhppote-cli 405419896
+#   ./scripts/remote-access-control.sh ./bin/uhppoted-cli 405419896
 # 
 # Ref.:
 #   1. https://stackoverflow.com/questions/3004811/how-do-you-run-multiple-programs-in-parallel-from-a-bash-script

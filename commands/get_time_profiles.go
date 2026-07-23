@@ -199,7 +199,7 @@ func (c *GetTimeProfiles) Usage() string {
 }
 
 func (c *GetTimeProfiles) Help() {
-	fmt.Println("Usage: uhppote-cli [options] get-time-profiles <serial number> <file>")
+	fmt.Println("Usage: uhppoted-cli [options] get-time-profiles <serial number> <file>")
 	fmt.Println()
 	fmt.Println(" Retrieves all the defined time profiles from a controller and (optionally) writes them to a TSV file")
 	fmt.Println()
@@ -214,7 +214,7 @@ func (c *GetTimeProfiles) Help() {
 	fmt.Println()
 	fmt.Println("  Examples:")
 	fmt.Println()
-	fmt.Println("    uhppote-cli get-time-profiles 9876543210 ./9876543210.tsv")
+	fmt.Println("    uhppoted-cli get-time-profiles 9876543210 ./9876543210.tsv")
 	fmt.Println()
 }
 

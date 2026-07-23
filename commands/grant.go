@@ -95,7 +95,7 @@ func (c *Grant) Usage() string {
 }
 
 func (c *Grant) Help() {
-	fmt.Println("Usage: uhppote-cli [options] grant <card number> <start date> <end date> <profile> <doors>")
+	fmt.Println("Usage: uhppoted-cli [options] grant <card number> <start date> <end date> <profile> <doors>")
 	fmt.Println()
 	fmt.Println(" Sets the access permissions for a card")
 	fmt.Println()
@@ -122,9 +122,9 @@ func (c *Grant) Help() {
 	fmt.Println()
 	fmt.Println("  Examples:")
 	fmt.Println()
-	fmt.Println("    uhppote-cli grant 918273645 2020-01-01 2020-12-31 Front Door, Workshop")
+	fmt.Println("    uhppoted-cli grant 918273645 2020-01-01 2020-12-31 Front Door, Workshop")
 	fmt.Println(`    uhppote-cli grant 918273645 2020-01-01 2020-12-31 29 "Front Door, Workshop"`)
-	fmt.Println("    uhppote-cli grant 918273645 2020-01-01 2020-12-31 ALL")
+	fmt.Println("    uhppoted-cli grant 918273645 2020-01-01 2020-12-31 ALL")
 	fmt.Println()
 }
 
