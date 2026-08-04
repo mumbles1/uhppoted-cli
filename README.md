@@ -1,4 +1,4 @@
-![build](https://github.com/uhppoted/uhppote-cli/workflows/build/badge.svg)
+<!-- ![build](https://github.com/uhppoted/uhppote-cli/workflows/build/badge.svg) -->
 
 # uhppoted-cli
 
@@ -20,15 +20,14 @@ savings changes.
 
 ### Current Release
 
-**[v0.9.0](https://github.com/uhppoted/uhppote-cli/releases/tag/v0.9.0) - 2026-01-27**
+**[v0.9.0](https://codeberg.org/uhppoted/uhppoted-cli/releases/tag/v0.9.0) - 2026-01-27**
 1. Updated to Go 1.25.
 
 
 ## Installation
 
-An archive containing executables for all the supported operating systems can be downloaded from the [releases](https://github.com/uhppoted/uhppote-cli/releases) page. Alternatively, operating system specific tarballs can be found in the [uhppoted](https://github.com/uhppoted/uhppoted/releases) releases.
-
-Installation is straightforward - download the archive and extract it to a directory of your choice and place the executable in a directory in your PATH. 
+Executables for all the supported operating systems can be downloaded from the [releases](https://codeberg.org/uhppoted/uhppoted-cli/releases) page. Installation
+is straightforward - download the archive and extract it to a directory of your choice and place the executable in a directory in your PATH. 
 
 ### `uhppoted.conf`
 

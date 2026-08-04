@@ -1,12 +1,17 @@
 # TODO
 
+- [x] Migrate to codeberg.org (cf. https://codeberg.org/uhppoted/uhppoted/issues/1)
 - [x] 'set first-card' (cf. https://github.com/uhppoted/uhppoted/issues/82)
-      - [x] CLI
-      - [x] CHANGELOG
-      - [x] README
-      - [x] add first card privileges to _PutCard_
-      - [x] _allow only first card swipe_
-      - [x] unit test for getFirstCard
+- [ ] Add first-card privilege to `get-card` and `put-card` (cf. https://codeberg.org/uhppoted/uhppoted/issues/3)
+    - [ ] get-card
+    - [ ] put-card
+    - [ ] get-acl
+    - [ ] put-acl
+    - [ ] load-acl
+    - [ ] grant
+    - [ ] revoke
+    - [ ] compare
+    - [ ] show
 
 - [ ] CLI is waiting for CR on error
 - [ ] JSON formatted output for e.g. get-status
