@@ -57,7 +57,9 @@ func (c *Grant) Execute(ctx Context) error {
 		return err
 	}
 
-	err = acl.Grant(ctx.uhppote, ctx.devices, cardNumber, types.Date(*from), types.Date(*to), profileID, doors)
+	firstcard := acl.FirstCardUnknown
+
+	err = acl.Grant(ctx.uhppote, ctx.devices, cardNumber, types.Date(*from), types.Date(*to), profileID, doors, firstcard)
 	if err != nil {
 		return err
 	}

@@ -47,7 +47,7 @@ func (c *LoadACL) Execute(ctx Context) error {
 		return err
 	}
 
-	list, warnings, err := acl.ParseTSV(bytes.NewReader(tsv), ctx.devices, c.strict)
+	list, warnings, err := acl.ParseTSV(bytes.NewReader(tsv), ctx.devices, c.strict, false, false)
 	if err != nil {
 		return err
 	}
@@ -61,11 +61,7 @@ func (c *LoadACL) Execute(ctx Context) error {
 	}
 
 	put := func(u uhppote.IUHPPOTE, list acl.ACL) (map[uint32]acl.Report, []error) {
-		if c.withPIN {
-			return acl.PutACLWithPIN(ctx.uhppote, list, c.dryrun, c.format)
-		} else {
-			return acl.PutACL(ctx.uhppote, list, c.dryrun, c.format)
-		}
+		return acl.PutACL(ctx.uhppote, list, c.dryrun, c.withPIN, false, c.format)
 	}
 
 	rpt, errors := put(ctx.uhppote, list)

@@ -3,8 +3,8 @@ module codeberg.org/uhppoted/uhppoted-cli
 go 1.26
 
 require (
-	codeberg.org/uhppoted/uhppoted-core v0.0.0-20260721152015-d2001b5e6cf9
-	codeberg.org/uhppoted/uhppoted-lib v0.0.0-20260721134957-2397d188319f
+	codeberg.org/uhppoted/uhppoted-core v0.9.1-0.20260813185934-c004d9c86466
+	codeberg.org/uhppoted/uhppoted-lib v0.9.1-0.20260811151401-370952f4629a
 )
 
 require golang.org/x/sys v0.47.0 // indirect

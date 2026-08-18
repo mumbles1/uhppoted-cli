@@ -58,7 +58,7 @@ func (c *CompareACL) Execute(ctx Context) error {
 		return err
 	}
 
-	list, warnings, err := acl.ParseTSV(bytes.NewReader(tsv), ctx.devices, false)
+	list, warnings, err := acl.ParseTSV(bytes.NewReader(tsv), ctx.devices, false, false, false)
 	if err != nil {
 		return err
 	}

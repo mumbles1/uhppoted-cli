@@ -37,7 +37,7 @@ func (c *GetACL) Execute(ctx Context) error {
 		if c.withPIN {
 			return acl.MakeTSVWithPIN(list, devices, w)
 		} else {
-			return acl.MakeTSV(list, devices, w)
+			return acl.MakeTSV(list, devices, false, false, w)
 		}
 	}
 
@@ -45,7 +45,7 @@ func (c *GetACL) Execute(ctx Context) error {
 		if c.withPIN {
 			return acl.MakeFlatFileWithPIN(list, ctx.devices, w)
 		} else {
-			return acl.MakeFlatFile(list, ctx.devices, w)
+			return acl.MakeFlatFile(list, ctx.devices, false, false, w)
 		}
 	}
 
