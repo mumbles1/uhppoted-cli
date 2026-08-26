@@ -3,8 +3,8 @@
 - [x] Migrate to codeberg.org (cf. https://codeberg.org/uhppoted/uhppoted/issues/1)
 - [x] 'set first-card' (cf. https://github.com/uhppoted/uhppoted/issues/82)
 - [ ] Add first-card privilege to `get-card` and `put-card` (cf. https://codeberg.org/uhppoted/uhppoted/issues/3)
-    - [ ] get-card
-    - [ ] put-card
+    - [x] get-card
+    - [x] put-card
     - [ ] get-acl
     - [ ] put-acl
     - [ ] load-acl
