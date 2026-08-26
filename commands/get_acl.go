@@ -15,13 +15,15 @@ import (
 )
 
 var GetACLCmd = GetACL{
-	file:    "",
-	withPIN: false,
+	file:          "",
+	withPIN:       false,
+	withFirstCard: false,
 }
 
 type GetACL struct {
-	file    string
-	withPIN bool
+	file          string
+	withPIN       bool
+	withFirstCard bool
 }
 
 func (c *GetACL) Execute(ctx Context) error {
@@ -34,19 +36,11 @@ func (c *GetACL) Execute(ctx Context) error {
 	}
 
 	tsv := func(list acl.ACL, devices []uhppote.Device, w io.Writer) error {
-		if c.withPIN {
-			return acl.MakeTSVWithPIN(list, devices, w)
-		} else {
-			return acl.MakeTSV(list, devices, false, false, w)
-		}
+		return acl.MakeTSV(list, devices, c.withPIN, c.withFirstCard, w)
 	}
 
 	txt := func(list acl.ACL, devices []uhppote.Device, w io.Writer) error {
-		if c.withPIN {
-			return acl.MakeFlatFileWithPIN(list, ctx.devices, w)
-		} else {
-			return acl.MakeFlatFile(list, ctx.devices, false, false, w)
-		}
+		return acl.MakeFlatFile(list, ctx.devices, c.withPIN, c.withFirstCard, w)
 	}
 
 	list, errors := acl.GetACL(ctx.uhppote, ctx.devices)
@@ -81,7 +75,8 @@ func (c *GetACL) Execute(ctx Context) error {
 
 func (c *GetACL) parseArgs() error {
 	flagset := flag.NewFlagSet("", flag.ExitOnError)
-	withPIN := flagset.Bool("with-pin", false, "Include card keypad PIN code in retrieved ACL information")
+	withPIN := flagset.Bool("with-pin", false, "Include card keypad PIN code in the retrieved ACL information")
+	withFirstCard := flagset.Bool("with-firstcard", false, "Include card first-card privileges in the retrieved ACL information")
 	file := ""
 	args := flag.Args()[1:]
 
@@ -102,6 +97,7 @@ func (c *GetACL) parseArgs() error {
 
 	c.file = file
 	c.withPIN = *withPIN
+	c.withFirstCard = *withFirstCard
 
 	return nil
 }
@@ -132,7 +128,8 @@ func (c *GetACL) Help() {
 	fmt.Printf("              (defaults to %s)\n", config.DefaultConfig)
 	fmt.Println("    --debug   Displays internal information for diagnosing errors")
 	fmt.Println()
-	fmt.Println("    --with-pin Includes the card keypad PIN code in the retrieved ACL.")
+	fmt.Println("    --with-pin        Includes the card keypad PIN code in the retrieved ACL.")
+	fmt.Println("    --with-firstcard  Includes the card first-card privileges in the retrieved ACL.")
 	fmt.Println()
 	fmt.Println("  Examples:")
 	fmt.Println()

@@ -307,12 +307,15 @@ revoke-all: build
 	$(CLI) $(DEBUG) revoke $(CARD) ALL
 	
 get-acl: build
-	$(CLI) get-acl
+	$(CLI) --config ./workdir/uhppoted.conf get-acl
 
 get-acl-with-pin: build
-	$(CLI) get-acl
-	$(CLI) get-acl --with-pin
-	$(CLI) get-acl --with-pin ../runtime/uhppoted-cli/acl-with-pin.tsv
+	$(CLI) --config ./workdir/uhppoted.conf get-acl --with-pin
+	$(CLI) --config ./workdir/uhppoted.conf get-acl --with-pin ./workdir/acl-with-pin.tsv
+
+get-acl-with-firstcard: build
+	$(CLI) --config ./workdir/uhppoted.conf get-acl --with-firstcard
+	$(CLI) --config ./workdir/uhppoted.conf get-acl --with-firstcard ./workdir/acl-with-pin.tsv
 
 compare-acl: build
 	$(CLI) $(DEBUG) compare-acl ../runtime/simulation/simulation.acl

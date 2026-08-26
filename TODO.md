@@ -4,8 +4,9 @@
 - [x] 'set first-card' (cf. https://github.com/uhppoted/uhppoted/issues/82)
 - [ ] Add first-card privilege to `get-card` and `put-card` (cf. https://codeberg.org/uhppoted/uhppoted/issues/3)
     - [x] get-card
+    - [x] get-card-by-index
     - [x] put-card
-    - [ ] get-acl
+    - [x] get-acl
     - [ ] put-acl
     - [ ] load-acl
     - [ ] grant

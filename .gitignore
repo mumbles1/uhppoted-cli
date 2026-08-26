@@ -6,3 +6,4 @@ go.work.sum
 events.sh
 events.log
 release-notes.md
+workdir
