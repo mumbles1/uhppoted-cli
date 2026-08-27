@@ -291,7 +291,7 @@ listen: build
 # ACL COMMANDS
 
 show: build
-	$(CLI) show $(CARD)
+	$(CLI) --config ./workdir/uhppoted.conf show $(CARD)
 
 grant: build
 	$(CLI) grant $(CARD) 2023-01-01 2023-12-31 "Gryffindor, Slytherin"

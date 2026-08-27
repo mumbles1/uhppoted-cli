@@ -7,12 +7,12 @@
     - [x] get-card-by-index
     - [x] put-card
     - [x] get-acl
-    - [ ] put-acl
+    - [x] show
+    - [ ] compare-acl
     - [ ] load-acl
     - [ ] grant
     - [ ] revoke
     - [ ] compare
-    - [ ] show
 
 - [ ] CLI is waiting for CR on error
 - [ ] JSON formatted output for e.g. get-status

@@ -1,11 +1,12 @@
 package commands
 
 import (
-	"codeberg.org/uhppoted/uhppoted-lib/acl"
-	"codeberg.org/uhppoted/uhppoted-lib/config"
 	"fmt"
 	"sort"
 	"strings"
+
+	"codeberg.org/uhppoted/uhppoted-lib/acl"
+	"codeberg.org/uhppoted/uhppoted-lib/config"
 )
 
 var ShowCmd = Show{}
@@ -30,11 +31,16 @@ func (c *Show) Execute(ctx Context) error {
 
 	doors := []string{}
 	width := 0
-	for k := range permissions {
+	profiles := false
+	for k, v := range permissions {
 		doors = append(doors, k)
 
 		if width < len([]rune(k)) {
 			width = len([]rune(k))
+		}
+
+		if v.Profile >= 2 && v.Profile <= 254 {
+			profiles = true
 		}
 	}
 
@@ -45,15 +51,23 @@ func (c *Show) Execute(ctx Context) error {
 	})
 
 	fmt.Println()
-	format := fmt.Sprintf("%%-%ds  %%v  %%v\n", width)
-	formatp := fmt.Sprintf("%%-%ds  %%v  %%v  %%v\n", width)
 	for _, door := range doors {
 		v := permissions[door]
+		b := strings.Builder{}
+
+		fmt.Fprintf(&b, "%-[1]*s  %v  %v", width, door, v.From, v.To)
+
 		if v.Profile >= 2 && v.Profile <= 254 {
-			fmt.Printf(formatp, door, v.From, v.To, v.Profile)
-		} else {
-			fmt.Printf(format, door, v.From, v.To)
+			fmt.Fprintf(&b, "  %-3v", v.Profile)
+		} else if profiles {
+			fmt.Fprintf(&b, "  %-3v", "")
 		}
+
+		if v.FirstCard {
+			b.WriteString("  firstcard")
+		}
+
+		fmt.Printf("%v\n", b.String())
 	}
 	fmt.Println()
 
