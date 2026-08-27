@@ -23,21 +23,22 @@ var CompareACLCmd = CompareACL{
 ACL DIFF REPORT {{ .DateTime }}
 {{range $id,$value := .Diffs}}
   DEVICE {{ $id }}{{if or $value.Updated $value.Added $value.Deleted}}{{else}} OK{{end}}{{if $value.Updated}}
-    Incorrect:  {{range $value.Updated}}{{.}}
+    Incorrect:  {{range $value.Updated}}{{. | format}}
                 {{end}}{{end}}{{if $value.Added}}
-    Missing:    {{range $value.Added}}{{.}}
+    Missing:    {{range $value.Added}}{{. | format}}
                 {{end}}{{end}}{{if $value.Deleted}}
-    Unexpected: {{range $value.Deleted}}{{.}}
+    Unexpected: {{range $value.Deleted}}{{. | format}}
                 {{end}}{{end}}{{end}}
 -----------------------------------
 `,
 }
 
 type CompareACL struct {
-	file     string
-	rptfile  string
-	withPIN  bool
-	template string
+	file          string
+	rptfile       string
+	withPIN       bool
+	withFirstCard bool
+	template      string
 }
 
 func (c *CompareACL) Execute(ctx Context) error {
@@ -58,7 +59,7 @@ func (c *CompareACL) Execute(ctx Context) error {
 		return err
 	}
 
-	list, warnings, err := acl.ParseTSV(bytes.NewReader(tsv), ctx.devices, false, false, false)
+	list, warnings, err := acl.ParseTSV(bytes.NewReader(tsv), ctx.devices, false, c.withPIN, c.withFirstCard)
 	if err != nil {
 		return err
 	}
@@ -138,7 +139,17 @@ func (c *CompareACL) Execute(ctx Context) error {
 }
 
 func (c *CompareACL) report(diff map[uint32]acl.Diff, w io.Writer) error {
-	t, err := template.New("report").Parse(c.template)
+	funcs := template.FuncMap{
+		"format": func(v any) string {
+			if card, ok := v.(types.Card); ok {
+				return c.format(card)
+			} else {
+				return fmt.Sprintf("%v", v)
+			}
+		},
+	}
+
+	t, err := template.New("report").Funcs(funcs).Parse(c.template)
 	if err != nil {
 		return err
 	}
@@ -155,9 +166,55 @@ func (c *CompareACL) report(diff map[uint32]acl.Diff, w io.Writer) error {
 	return t.Execute(w, rpt)
 }
 
+func (c *CompareACL) format(card types.Card) string {
+	return fmt.Sprintf("%v", card)
+
+	// f := func(p uint8) string {
+	// 	switch {
+	// 	case p == 0:
+	// 		return "N"
+	//
+	// 	case p == 1:
+	// 		return "Y"
+	//
+	// 	case p >= 2 && p <= 254:
+	// 		return fmt.Sprintf("%v", p)
+	//
+	// 	default:
+	// 		return "N"
+	// 	}
+	// }
+	//
+	// var from string
+	// if card.From.IsZero() {
+	// 	from = "-"
+	// } else {
+	// 	from = fmt.Sprintf("%v", card.From)
+	// }
+	//
+	// var to string
+	// if card.To.IsZero() {
+	// 	to = "-"
+	// } else {
+	// 	to = fmt.Sprintf("%v", card.To)
+	// }
+	//
+	// firstcard := ""
+	// if !card.FirstCard.IsZero() {
+	// 	firstcard = fmt.Sprintf(" firstcard:%v", card.FirstCard)
+	// }
+	//
+	// if card.PIN == 0 || card.PIN > 999999 {
+	// 	return fmt.Sprintf("%-8v %-10v %-10v %v %v %v %v%v", card.CardNumber, from, to, f(card.Doors[1]), f(card.Doors[2]), f(card.Doors[3]), f(card.Doors[4]), firstcard)
+	// } else {
+	// 	return fmt.Sprintf("%-8v %-10v %-10v %v %v %v %v %v%v", card.CardNumber, from, to, f(card.Doors[1]), f(card.Doors[2]), f(card.Doors[3]), f(card.Doors[4]), card.PIN, firstcard)
+	// }
+}
+
 func (c *CompareACL) parseArgs() error {
 	flagset := flag.NewFlagSet("", flag.ExitOnError)
-	withPIN := flagset.Bool("with-pin", false, "Include card keypad PIN code in retrieved ACL information")
+	withPIN := flagset.Bool("with-pin", false, "Include card keypad PIN code when comparing ACLs")
+	withFirstCard := flagset.Bool("with-firstcard", false, "Include any first-card privileges when comparing ACLs")
 	file := ""
 	rptfile := ""
 	args := flag.Args()[1:]
@@ -195,6 +252,7 @@ func (c *CompareACL) parseArgs() error {
 	c.file = file
 	c.rptfile = rptfile
 	c.withPIN = *withPIN
+	c.withFirstCard = *withFirstCard
 
 	return nil
 }
@@ -235,17 +293,18 @@ func (c *CompareACL) Help() {
 	fmt.Printf("              (defaults to %s)\n", config.DefaultConfig)
 	fmt.Println("    --debug   Displays internal information for diagnosing errors")
 	fmt.Println()
-	fmt.Println("    --with-pin Includes the card keypad PIN code when comparing ACLs.")
+	fmt.Println("    --with-pin       Includes the card keypad PIN code when comparing ACLs.")
+	fmt.Println("    --with-firstcard Includes any first-card privileges when comparing ACLs.")
 	fmt.Println()
 	fmt.Println("               The TSV file with PIN should conform to the following format:")
-	fmt.Println("               Card Number<tab>PIN<tab>From<tab>To<tab>Front Door<tab>Back Door<tab> ...")
+	fmt.Println("               Card Number<tab>PIN<tab>From<tab>To<tab>Front Door<tab>Back Door<tab> ... FirstCard")
 	fmt.Println("               123456789<tab>0<tab>2023-01-01<tab>2023-12-31<tab>Y<tab>N<tab> ...")
 	fmt.Println("               987654321<tab>7531<tab>2023-03-05<tab>2023-11-15<tab>N<tab>N<tab> ...")
 	fmt.Println()
 	fmt.Println("  Examples:")
 	fmt.Println()
-	fmt.Println("    uhppoted-cli compare-acl \"uhppote-2023-03-07.tsv\"")
-	fmt.Println("    uhppoted-cli --debug --config .config compare-acl --with-pin \"uhppote-2023-03-07.tsv\"")
+	fmt.Println(`    uhppoted-cli compare-acl "uhppote-2023-03-07.tsv"`)
+	fmt.Println(`    uhppoted-cli --debug --config .config compare-acl --with-pin "uhppoted-2026-08-27.tsv"`)
 	fmt.Println()
 }
 

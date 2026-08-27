@@ -318,15 +318,13 @@ get-acl-with-firstcard: build
 	$(CLI) --config ./workdir/uhppoted.conf get-acl --with-firstcard ./workdir/acl-with-pin.tsv
 
 compare-acl: build
-	$(CLI) $(DEBUG) compare-acl ../runtime/simulation/simulation.acl
-	$(CLI) $(DEBUG) --config ../runtime/simulation/$(SERIALNO).conf compare-acl ../runtime/simulation/simulation.acl ../runtime/simulation/$(SERIALNO).rpt
+	$(CLI) --config ./workdir/uhppoted.conf compare-acl ./workdir/uhppoted.acl
 
 compare-acl-with-pin: build
-	$(CLI) compare-acl ../runtime/simulation/simulation.acl
-	$(CLI) compare-acl ../runtime/simulation/simulation.acl ../runtime/uhppoted-cli/compare-acl.tsv
-	$(CLI) compare-acl --with-pin ../runtime/simulation/simulation.acl
-	$(CLI) compare-acl --with-pin ../runtime/simulation/simulation-with-pin.acl
-	$(CLI) compare-acl --with-pin ../runtime/simulation/simulation.acl ../runtime/uhppoted-cli/compare-acl-with-pin.tsv
+	$(CLI) --config ./workdir/uhppoted.conf compare-acl --with-pin ./workdir/uhppoted-pin.acl
+
+compare-acl-with-firstcard: build
+	$(CLI) --config ./workdir/uhppoted.conf compare-acl --with-firstcard ./workdir/uhppoted-firstcard.acl
 
 load-acl: build
 	$(CLI) --config ../runtime/simulation/$(SERIALNO).conf load-acl ../runtime/simulation/$(SERIALNO).acl

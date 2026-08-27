@@ -9,10 +9,12 @@
     - [x] get-acl
     - [x] show
     - [ ] compare-acl
+        - [ ] fix diff formatting
+
     - [ ] load-acl
     - [ ] grant
     - [ ] revoke
-    - [ ] compare
+
 
 - [ ] CLI is waiting for CR on error
 - [ ] JSON formatted output for e.g. get-status
