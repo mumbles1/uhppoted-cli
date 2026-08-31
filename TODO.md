@@ -7,9 +7,9 @@
     - [x] get-card-by-index
     - [x] put-card
     - [x] get-acl
-    - [x] show
     - [x] compare-acl
-    - [ ] load-acl
+    - [x] load-acl
+    - [x] show
     - [ ] grant
     - [ ] revoke
 

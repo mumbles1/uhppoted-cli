@@ -14,19 +14,21 @@ import (
 )
 
 var LoadACLCmd = LoadACL{
-	file:    "",
-	withPIN: false,
-	format:  types.WiegandAny,
-	strict:  false,
-	dryrun:  false,
+	file:          "",
+	withPIN:       false,
+	withFirstCard: false,
+	format:        types.WiegandAny,
+	strict:        false,
+	dryrun:        false,
 }
 
 type LoadACL struct {
-	file    string
-	withPIN bool
-	format  types.CardFormat
-	strict  bool
-	dryrun  bool
+	file          string
+	withPIN       bool
+	withFirstCard bool
+	format        types.CardFormat
+	strict        bool
+	dryrun        bool
 }
 
 func (c *LoadACL) Execute(ctx Context) error {
@@ -47,7 +49,7 @@ func (c *LoadACL) Execute(ctx Context) error {
 		return err
 	}
 
-	list, warnings, err := acl.ParseTSV(bytes.NewReader(tsv), ctx.devices, c.strict, false, false)
+	list, warnings, err := acl.ParseTSV(bytes.NewReader(tsv), ctx.devices, c.strict, c.withPIN, c.withFirstCard)
 	if err != nil {
 		return err
 	}
@@ -61,7 +63,7 @@ func (c *LoadACL) Execute(ctx Context) error {
 	}
 
 	put := func(u uhppote.IUHPPOTE, list acl.ACL) (map[uint32]acl.Report, []error) {
-		return acl.PutACL(ctx.uhppote, list, c.dryrun, c.withPIN, false, c.format)
+		return acl.PutACL(ctx.uhppote, list, c.dryrun, c.withPIN, c.withFirstCard, c.format)
 	}
 
 	rpt, errors := put(ctx.uhppote, list)
@@ -109,7 +111,8 @@ loop:
 func (c *LoadACL) parseArgs(ctx Context) error {
 	flagset := flag.NewFlagSet("", flag.ExitOnError)
 	format := flagset.String("card-format", fmt.Sprintf("%v", ctx.config.CardFormat), "Card format for card number validation")
-	withPIN := flagset.Bool("with-pin", false, "Include card keypad PIN code in retrieved ACL information")
+	withPIN := flagset.Bool("with-pin", false, "Use PIN code from ACL file")
+	withFirstCard := flagset.Bool("with-firstcard", false, "Use first-card privileges from ACL file")
 	strict := flagset.Bool("strict", false, "Treat duplicate card numbers as errors")
 	file := ""
 	args := flag.Args()[1:]
@@ -133,6 +136,7 @@ func (c *LoadACL) parseArgs(ctx Context) error {
 
 	c.file = file
 	c.withPIN = *withPIN
+	c.withFirstCard = *withFirstCard
 	c.strict = *strict
 
 	if v, err := types.CardFormatFromString(*format); err != nil {
@@ -183,6 +187,13 @@ func (c *LoadACL) Help() {
 	fmt.Println("               Card Number<tab>PIN<tab>From<tab>To<tab>Front Door<tab>Back Door<tab> ...")
 	fmt.Println("               123456789<tab>0<tab>2023-01-01<tab>2023-12-31<tab>Y<tab>N<tab> ...")
 	fmt.Println("               987654321<tab>7531<tab>2023-03-05<tab>2023-11-15<tab>N<tab>N<tab> ...")
+	fmt.Println()
+	fmt.Println("    --with-firstcard Updates the card first-card privileges on the access controllers. Defaults to false.")
+	fmt.Println()
+	fmt.Println("               The TSV file with first-card privileges should conform to the following format:")
+	fmt.Println("               Card Number<tab>PIN<tab>From<tab>To<tab>Front Door<tab>Back Door<tab> ... <tab>FirstCard")
+	fmt.Println("               123456789<tab>0<tab>2023-01-01<tab>2023-12-31<tab>Y<tab>N<tab> ... <tab>Y")
+	fmt.Println("               987654321<tab>7531<tab>2023-03-05<tab>2023-11-15<tab>N<tab>N<tab> ... <tab>N")
 	fmt.Println()
 	fmt.Println("  Options:")
 	fmt.Println()

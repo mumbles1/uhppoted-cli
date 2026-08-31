@@ -1575,24 +1575,29 @@ The ACL (_access control list_) commands manage access permissions across the se
 
 The only currently supported ACL file format is TSV (tab separated values) and is expected to be formatted as follows:
 
-    Card Number From  To  Workshop  Side Door Front Door  Garage  Upstairs  Downstairs  Tower Cellar
-    123465537 2020-01-01  2020-12-31  N N Y N Y N Y Y
-    231465538 2020-01-01  2020-12-31  Y N Y N N 29 N N
-    635465539 2020-01-01  2020-12-31  N N N N Y N Y Y
+    Card Number PIN  From        To          Workshop  Side Door Front Door  Garage  Upstairs  Downstairs  Tower Cellar FirstCard
+    123465537   1234 2020-01-01  2020-12-31  N         N         Y           N       Y         N           Y     Y      N
+    231465538        2020-01-01  2020-12-31  Y         N         Y           N       N         29          N     N      N
+    635465539        2020-01-01  2020-12-31  N         N         N           N       Y         N           Y     Y      Y
 
 | Field         | Description                                                                |
 |---------------|----------------------------------------------------------------------------|
 | `Card Number` | Access card number                                                         |
+| `PIN`         | (optional) card reader keypad code                                         |
 | `From`        | Date from which card is valid (_valid from 00:00 on that date_)            |
 | `To`          | Date until which card is valid (_valid until 23:59 on that date_)          |
 | `<door>`      | Door name matching controller configuration (_case and space insensitive_) |
 | `<door>`      | ...                                                                        |
 | ...           |                                                                            |
+| `FirstCard`   | (optional) first-card privileges                                           |
 
-The ACL file must include a column for each controller + door configured in the _devices_ section of the `uhppoted.conf` file used to configure the utility. Permissions for a door can be:
+1. The ACL file must include a column for each controller + door configured in the _devices_ section of the `uhppoted.conf` file used to configure the utility. Permissions for a door can be:
 - Y
 - N
 - time profile ID (e.g. 29)
+
+2. The _PIN_ column should only be present if the `--with-pin` command line option is used.
+3. The _FirstCard_ column should only be present if the `--with-firstcard` command line option is used.
 
 An [example ACL file](https://codeberg.org/uhppoted/uhppoted/blob/master/runtime/simulation/405419896.acl) is included in the full `uhppoted` distribution, along with the matching [_conf_](https://codeberg.org/uhppoted/uhppoted/blob/master/runtime/simulation/405419896.conf) file.
 
@@ -1672,6 +1677,9 @@ Retrieves and displays the access permissions for a single card across the set o
   --timeout     Sets the timeout for a response from a controller (default value is 2.5s)
   --debug       Displays verbose debugging information, in particular the communications with the UHPPOTE controllers
 
+  --with-pin        Includes the card keypad PIN field when comparing the ACL. Defaults to false.
+  --with-firstcard  Includes the first-card privileges when comparing the ACL. Defaults to false.
+
   Example:
 
   uhppoted-cli show 918273645
@@ -1694,10 +1702,12 @@ Loads the access permissions from an ACL file to the set of configured UHPPOTE c
   --timeout     Sets the timeout for a response from a controller (default value is 2.5s)
   --debug       Displays verbose debugging information, in particular the communications with the UHPPOTE controllers
 
-  --with-pin    Updates the access controller PIN for all cards. Default is false.
-                are ignored (or deleted if they exist) with a warning message
-  --strict      Fails with an error for duplicate card numbers. Default is false in which case duplicate cards numbers
-                are ignored (or deleted if they exist) with a warning message
+  --with-pin        Updates the access controller PIN for all cards. Default is false.
+  --with-firstcard  Updates the first-card privileges for the cards.
+
+  --strict          Fails with an error for duplicate card numbers. Default is false in which case duplicate cards numbers
+                    are ignored (or deleted if they exist) with a warning message
+
   --card-format <format> (optional) optionally enables card format validation (either any or Wiegand-26). Defaults to the
                          `card.format` setting in _uhppoted.conf_ (or _none_).
 
@@ -1723,7 +1733,8 @@ Fetches the cards stored in the set of configured UHPPOTE controllers, creates a
   --timeout     Sets the timeout for a response from a controller (default value is 2.5s)
   --debug       Displays verbose debugging information, in particular the communications with the UHPPOTE controllers
 
-  --with-pin    Includes the card keypad PIN field in the retrieved ACL.
+  --with-pin        Includes the card keypad PIN field in the retrieved ACL.
+  --with-firstcard  Includes the first-card privileges in the retrieved ACL.
 
   Example:
 
@@ -1750,8 +1761,8 @@ exception report.
   --timeout     Sets the timeout for a response from a controller (default value is 2.5s)
   --debug       Displays verbose debugging information, in particular the communications with the UHPPOTE controllers
 
-  --with-pin    Includes the card keypad PIN field when comparing the ACL. Defaults to false i.e. ignores the 
-                card keypad PIN field.
+  --with-pin        Includes the card keypad PIN field when comparing the ACL. Defaults to false.
+  --with-firstcard  Includes the first-card privileges when comparing the ACL. Defaults to false.
 
   Example:
 

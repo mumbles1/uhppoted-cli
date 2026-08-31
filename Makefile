@@ -294,11 +294,16 @@ show: build
 	$(CLI) --config ./workdir/uhppoted.conf show $(CARD)
 
 grant: build
-	$(CLI) grant $(CARD) 2023-01-01 2023-12-31 "Gryffindor, Slytherin"
-	$(CLI) grant $(CARD) 2023-01-01 2023-12-31 29 "Dungeon"
+	$(CLI) --config ./workdir/uhppoted.conf grant $(CARD) 2026-01-01 2026-12-31 "Gryffindor, Slytherin"
+	$(CLI) --config ./workdir/uhppoted.conf grant $(CARD) 2026-01-01 2026-12-31 29 "Dungeon"
+
+grant-firscard: build
+	$(CLI) --config ./workdir/uhppoted.conf grant $(CARD) 2026-01-01 2026-12-31 "Gryffindor, Slytherin" --first-card
+	$(CLI) --config ./workdir/uhppoted.conf grant $(CARD) 2026-01-01 2026-12-31 29 "Dungeon" --firstcard
+	$(CLI) --config ./workdir/uhppoted.conf grant $(CARD) 2026-01-01 2026-12-31 ALL --firstcard
 
 grant-all: build
-	$(CLI) $(DEBUG) grant $(CARD) 2023-01-01 2023-12-31 ALL
+	$(CLI) --config ./workdir/uhppoted.conf grant $(CARD) 2026-01-01 2026-12-31 ALL
 
 revoke: build
 	$(CLI) $(DEBUG) revoke $(CARD) "Lady's Chamber, D2"
@@ -317,6 +322,9 @@ get-acl-with-firstcard: build
 	$(CLI) --config ./workdir/uhppoted.conf get-acl --with-firstcard
 	$(CLI) --config ./workdir/uhppoted.conf get-acl --with-firstcard ./workdir/acl-with-pin.tsv
 
+get-acl-all: build
+	$(CLI) --config ./workdir/uhppoted.conf get-acl --with-pin --with-firstcard
+
 compare-acl: build
 	$(CLI) --config ./workdir/uhppoted.conf compare-acl ./workdir/uhppoted.acl
 
@@ -326,13 +334,17 @@ compare-acl-with-pin: build
 compare-acl-with-firstcard: build
 	$(CLI) --config ./workdir/uhppoted.conf compare-acl --with-firstcard ./workdir/uhppoted-firstcard.acl
 
-compare-acl-with-all: build
+compare-acl-all: build
 	$(CLI) --config ./workdir/uhppoted.conf compare-acl --with-pin --with-firstcard ./workdir/uhppoted-all.acl
 
 load-acl: build
-	$(CLI) --config ../runtime/simulation/$(SERIALNO).conf load-acl ../runtime/simulation/$(SERIALNO).acl
+	$(CLI) --config ./workdir/uhppoted.conf load-acl ./workdir/uhppoted.acl
 
 load-acl-with-pin: build
-	$(CLI) load-acl ../runtime/simulation/simulation.acl
-	$(CLI) load-acl --with-pin ../runtime/simulation/simulation-with-pin.acl
+	$(CLI) --config ./workdir/uhppoted.conf load-acl --with-pin  ./workdir/uhppoted-pin.acl
 
+load-acl-with-firstcard: build
+	$(CLI) --config ./workdir/uhppoted.conf load-acl --with-firstcard  ./workdir/uhppoted-firstcard.acl
+
+load-acl-all: build
+	$(CLI) --config ./workdir/uhppoted.conf load-acl --with-pin --with-firstcard  ./workdir/uhppoted-all.acl
