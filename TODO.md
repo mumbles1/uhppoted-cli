@@ -8,9 +8,7 @@
     - [x] put-card
     - [x] get-acl
     - [x] show
-    - [ ] compare-acl
-        - [ ] fix diff formatting
-
+    - [x] compare-acl
     - [ ] load-acl
     - [ ] grant
     - [ ] revoke

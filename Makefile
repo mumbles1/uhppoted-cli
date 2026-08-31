@@ -326,6 +326,9 @@ compare-acl-with-pin: build
 compare-acl-with-firstcard: build
 	$(CLI) --config ./workdir/uhppoted.conf compare-acl --with-firstcard ./workdir/uhppoted-firstcard.acl
 
+compare-acl-with-all: build
+	$(CLI) --config ./workdir/uhppoted.conf compare-acl --with-pin --with-firstcard ./workdir/uhppoted-all.acl
+
 load-acl: build
 	$(CLI) --config ../runtime/simulation/$(SERIALNO).conf load-acl ../runtime/simulation/$(SERIALNO).acl
 

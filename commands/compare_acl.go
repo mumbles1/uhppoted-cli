@@ -2,15 +2,17 @@ package commands
 
 import (
 	"bytes"
-	"codeberg.org/uhppoted/uhppoted-core/types"
-	"codeberg.org/uhppoted/uhppoted-lib/acl"
-	"codeberg.org/uhppoted/uhppoted-lib/config"
 	"flag"
 	"fmt"
 	"io"
 	"os"
+	"strings"
 	"text/template"
 	"time"
+
+	"codeberg.org/uhppoted/uhppoted-core/types"
+	"codeberg.org/uhppoted/uhppoted-lib/acl"
+	"codeberg.org/uhppoted/uhppoted-lib/config"
 )
 
 // CompareACLCmd is an initialized CompareACL command for the main() command list
@@ -139,10 +141,58 @@ func (c *CompareACL) Execute(ctx Context) error {
 }
 
 func (c *CompareACL) report(diff map[uint32]acl.Diff, w io.Writer) error {
+	widths := []int{
+		8,  // card number
+		10, // from
+		10, // to
+		1,  // door 1
+		1,  // door 2
+		1,  // door 3
+		1,  // door 4
+		0,  // PIN
+		0,  // first card
+	}
+
+	layout := func(card types.Card) {
+		widths[0] = max(widths[0], len(fmt.Sprintf("%-8v", card.CardNumber)))
+		widths[1] = max(widths[1], len(fmt.Sprintf("%v", card.From)))
+		widths[2] = max(widths[2], len(fmt.Sprintf("%v", card.To)))
+		widths[3] = max(widths[3], len(fmt.Sprintf("%v", card.Doors[1])))
+		widths[4] = max(widths[4], len(fmt.Sprintf("%v", card.Doors[2])))
+		widths[5] = max(widths[5], len(fmt.Sprintf("%v", card.Doors[3])))
+		widths[6] = max(widths[6], len(fmt.Sprintf("%v", card.Doors[4])))
+
+		if c.withPIN && card.PIN > 0 && card.PIN < 1000000 {
+			widths[7] = max(widths[7], len(fmt.Sprintf("%v", card.PIN)))
+		}
+
+		if c.withFirstCard {
+			widths[8] = max(widths[8], len(fmt.Sprintf("%v", card.FirstCard)))
+		}
+	}
+
+	for _, list := range diff {
+		for _, card := range list.Unchanged {
+			layout(card)
+		}
+
+		for _, card := range list.Updated {
+			layout(card)
+		}
+
+		for _, card := range list.Added {
+			layout(card)
+		}
+
+		for _, card := range list.Deleted {
+			layout(card)
+		}
+	}
+
 	funcs := template.FuncMap{
 		"format": func(v any) string {
 			if card, ok := v.(types.Card); ok {
-				return c.format(card)
+				return c.format(card, widths)
 			} else {
 				return fmt.Sprintf("%v", v)
 			}
@@ -166,49 +216,61 @@ func (c *CompareACL) report(diff map[uint32]acl.Diff, w io.Writer) error {
 	return t.Execute(w, rpt)
 }
 
-func (c *CompareACL) format(card types.Card) string {
-	return fmt.Sprintf("%v", card)
+func (c *CompareACL) format(card types.Card, widths []int) string {
+	var b strings.Builder
 
-	// f := func(p uint8) string {
-	// 	switch {
-	// 	case p == 0:
-	// 		return "N"
-	//
-	// 	case p == 1:
-	// 		return "Y"
-	//
-	// 	case p >= 2 && p <= 254:
-	// 		return fmt.Sprintf("%v", p)
-	//
-	// 	default:
-	// 		return "N"
-	// 	}
-	// }
-	//
-	// var from string
-	// if card.From.IsZero() {
-	// 	from = "-"
-	// } else {
-	// 	from = fmt.Sprintf("%v", card.From)
-	// }
-	//
-	// var to string
-	// if card.To.IsZero() {
-	// 	to = "-"
-	// } else {
-	// 	to = fmt.Sprintf("%v", card.To)
-	// }
-	//
-	// firstcard := ""
-	// if !card.FirstCard.IsZero() {
-	// 	firstcard = fmt.Sprintf(" firstcard:%v", card.FirstCard)
-	// }
-	//
-	// if card.PIN == 0 || card.PIN > 999999 {
-	// 	return fmt.Sprintf("%-8v %-10v %-10v %v %v %v %v%v", card.CardNumber, from, to, f(card.Doors[1]), f(card.Doors[2]), f(card.Doors[3]), f(card.Doors[4]), firstcard)
-	// } else {
-	// 	return fmt.Sprintf("%-8v %-10v %-10v %v %v %v %v %v%v", card.CardNumber, from, to, f(card.Doors[1]), f(card.Doors[2]), f(card.Doors[3]), f(card.Doors[4]), card.PIN, firstcard)
-	// }
+	f := func(p uint8) string {
+		switch {
+		case p == 0:
+			return "N"
+
+		case p == 1:
+			return "Y"
+
+		case p >= 2 && p <= 254:
+			return fmt.Sprintf("%v", p)
+
+		default:
+			return "N"
+		}
+	}
+
+	fmt.Fprintf(&b, "%*v", widths[0], card.CardNumber)
+
+	if card.From.IsZero() {
+		fmt.Fprintf(&b, " %-*v", widths[1], "-")
+	} else {
+		fmt.Fprintf(&b, " %-*v", widths[1], card.From)
+	}
+
+	if card.To.IsZero() {
+		fmt.Fprintf(&b, " %-*v", widths[2], "-")
+	} else {
+		fmt.Fprintf(&b, " %-*v", widths[2], card.To)
+	}
+
+	fmt.Fprintf(&b, " %-*v", widths[3], f(card.Doors[1]))
+	fmt.Fprintf(&b, " %-*v", widths[4], f(card.Doors[2]))
+	fmt.Fprintf(&b, " %-*v", widths[5], f(card.Doors[3]))
+	fmt.Fprintf(&b, " %-*v", widths[6], f(card.Doors[4]))
+
+	if c.withPIN {
+		if card.PIN == 0 || card.PIN > 999999 {
+			fmt.Fprintf(&b, " %-*v", widths[7], "-")
+		} else {
+			fmt.Fprintf(&b, " %-*v", widths[7], card.PIN)
+		}
+	}
+
+	if c.withFirstCard {
+		if card.FirstCard.IsZero() {
+			fmt.Fprintf(&b, " %-*v", widths[8], "-")
+		} else {
+			fmt.Fprintf(&b, " %-*v", widths[8], card.FirstCard)
+		}
+	}
+
+	return b.String()
 }
 
 func (c *CompareACL) parseArgs() error {
