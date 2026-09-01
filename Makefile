@@ -294,13 +294,20 @@ show: build
 	$(CLI) --config ./workdir/uhppoted.conf show $(CARD)
 
 grant: build
+	$(CLI) --config ./workdir/uhppoted.conf grant $(CARD) 2026-01-01 2026-12-31 Gryffindor,Slytherin
 	$(CLI) --config ./workdir/uhppoted.conf grant $(CARD) 2026-01-01 2026-12-31 "Gryffindor, Slytherin"
 	$(CLI) --config ./workdir/uhppoted.conf grant $(CARD) 2026-01-01 2026-12-31 29 "Dungeon"
 
 grant-firscard: build
-	$(CLI) --config ./workdir/uhppoted.conf grant $(CARD) 2026-01-01 2026-12-31 "Gryffindor, Slytherin" --first-card
-	$(CLI) --config ./workdir/uhppoted.conf grant $(CARD) 2026-01-01 2026-12-31 29 "Dungeon" --firstcard
-	$(CLI) --config ./workdir/uhppoted.conf grant $(CARD) 2026-01-01 2026-12-31 ALL --firstcard
+	$(CLI) --config ./workdir/uhppoted.conf grant $(CARD) 2026-01-01 2026-12-31 "Gryffindor, Dungeon" --first-card
+# 	$(CLI) --config ./workdir/uhppoted.conf grant $(CARD) 2026-01-01 2026-12-31 Gryffindor Slytherin --first-card
+# 	$(CLI) --config ./workdir/uhppoted.conf grant $(CARD) 2026-01-01 2026-12-31 Gryffindor,Slytherin --first-card
+# 	$(CLI) --config ./workdir/uhppoted.conf grant $(CARD) 2026-01-01 2026-12-31 Gryffindor, Slytherin --first-card
+# 	$(CLI) --config ./workdir/uhppoted.conf grant $(CARD) 2026-01-01 2026-12-31 29 "Gryffindor, Dungeon" --first-card
+# 	$(CLI) --config ./workdir/uhppoted.conf grant $(CARD) 2026-01-01 2026-12-31 29 Gryffindor Dungeon --first-card
+# 	$(CLI) --config ./workdir/uhppoted.conf grant $(CARD) 2026-01-01 2026-12-31 ALL --first-card
+# 	$(CLI) --config ./workdir/uhppoted.conf grant $(CARD) 2026-01-01 2026-12-31 29 ALL --first-card
+# 	$(CLI) --config ./workdir/uhppoted.conf grant $(CARD) 2026-01-01 2026-12-31 --first-card
 
 grant-all: build
 	$(CLI) --config ./workdir/uhppoted.conf grant $(CARD) 2026-01-01 2026-12-31 ALL

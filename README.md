@@ -1605,20 +1605,28 @@ An [example ACL file](https://codeberg.org/uhppoted/uhppoted/blob/master/runtime
 
 Grants access permissions to a single card across the set of configured UHPPOTE controllers. The `grant` command extends
 the functionality of the device `put-card` command to set the access permissions across multiple controllers using door 
-names rather than the device specific controller + door ID's. The _granted_ permissions are added to the existing card
+names rather than the device specific controller + door ID's. The _granted_ permissions are **added** to the existing card
 access permissions.
 
 *NOTE: The date range during which a card has access is automatically widened to accommodate the earliest _from_ date and latest
 _to_ date across the controllers.*
 
 ```
-uhppoted-cli [options] grant <card> <from> <to> [doors]
+uhppoted-cli [options] grant <card> <from> <to> [profile] [doors] [--first-card]
 
   <card>        Card number to be granted access
   <from>        Date from which the card is granted access, in yyyy-mm-dd format. Access is 
                 granted from 00:00 on the 'from' date.
   <to>          Date until which the card is granted access, , in yyyy-mm-dd format. Access
                 is granted until 23:59 on the 'to' date.
+
+  <profile>     (optional) predefined time profile, in the range [2..254]
+  
+  <doors>       comma separated list of doors e.g. Front Door, Workshop. Doors are case- and space insensitive
+                and correspond to the doors defined in the config file. The pseudo-door ALL will grant the card
+                access to all doors across all configured controllers.
+
+  --first-card  (optional) grants first-card privilege to all doors to which the card has access.
 
   Options: 
   --config      Sets the uhppoted.conf file to use for controller configurations
@@ -1630,7 +1638,7 @@ uhppoted-cli [options] grant <card> <from> <to> [doors]
 
   Example:
 
-  uhppoted-cli grant 918273645 2020-01-01 2020-12-31 Front Door, Workshop
+  uhppoted-cli grant 918273645 2026-01-01 2026-12-31 "Front Door,Workshop" --first-card
 
 ```
 

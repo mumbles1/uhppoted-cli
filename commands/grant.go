@@ -37,29 +37,35 @@ func (c *Grant) Execute(ctx Context) error {
 		return err
 	}
 
+	// ... time profile ?
 	var re = regexp.MustCompile("[0-9]+")
-	var profileID = 0
+	var profile = 0
+	var firstcard = acl.FirstCardUnknown
 	var doors []string
 
-	if len(flag.Args()) > 5 && re.MatchString(flag.Arg(4)) {
-		profileID, err = strconv.Atoi(flag.Arg(4))
-		if err != nil {
+	if len(flag.Args()) > 5 && re.MatchString(flag.Arg(4)) && flag.Arg(5) != "--firstcard" && flag.Arg(5) != "--first-card" {
+		if v, err := strconv.Atoi(flag.Arg(4)); err != nil {
 			return err
-		} else if profileID < 2 || profileID > 254 {
-			return fmt.Errorf("invalid time profile ID (%v) - valid range is from 2 to 254", profileID)
+		} else if v < 2 || v > 254 {
+			return fmt.Errorf("invalid time profile ID (%v) - valid range is from 2 to 254", v)
+		} else {
+			profile = v
 		}
 
-		doors, err = c.getDoors(5)
-		if err != nil {
+		if v, err := c.getDoors(5); err != nil {
 			return err
+		} else {
+			doors = v
 		}
 	} else if doors, err = c.getDoors(4); err != nil {
 		return err
 	}
 
-	firstcard := acl.FirstCardUnknown
+	if arg := flag.Args()[len(flag.Args())-1]; arg == "--first-card" || arg == "--firstcard" {
+		firstcard = acl.FirstCardGranted
+	}
 
-	err = acl.Grant(ctx.uhppote, ctx.devices, cardNumber, types.Date(*from), types.Date(*to), profileID, doors, firstcard)
+	err = acl.Grant(ctx.uhppote, ctx.devices, cardNumber, types.Date(*from), types.Date(*to), profile, doors, firstcard)
 	if err != nil {
 		return err
 	}
@@ -71,8 +77,19 @@ func (c *Grant) Execute(ctx Context) error {
 
 func (c *Grant) getDoors(ix int) ([]string, error) {
 	doors := []string{}
+	args := []string{}
 
-	s := strings.Join(flag.Args()[ix:], " ")
+	for ; ix < len(flag.Args()); ix++ {
+		arg := flag.Arg(ix)
+
+		if arg == "--firstcard" || arg == "--first-card" {
+			break
+		}
+
+		args = append(args, arg)
+	}
+
+	s := strings.Join(args, ",")
 	tokens := strings.SplitSeq(s, ",")
 
 	for t := range tokens {
@@ -97,7 +114,7 @@ func (c *Grant) Usage() string {
 }
 
 func (c *Grant) Help() {
-	fmt.Println("Usage: uhppoted-cli [options] grant <card number> <start date> <end date> <profile> <doors>")
+	fmt.Println("Usage: uhppoted-cli [options] grant <card number> <start date> <end date> <profile> <doors> <--firstcard>")
 	fmt.Println()
 	fmt.Println(" Sets the access permissions for a card")
 	fmt.Println()
@@ -108,13 +125,15 @@ func (c *Grant) Help() {
 	fmt.Println("  <doors>          (required) comma separated list of permitted doors e.g. Front Door, Workshop")
 	fmt.Println("                              Doors are case- and space insensitive and correspond to the doors")
 	fmt.Println("                              defined in the config file. The pseudo-door ALL will grant the")
-	fmt.Println("                              card access to all doors across all configured devices")
+	fmt.Println("                              card access to all doors across all configured configured")
 	fmt.Println()
 	fmt.Println("                              N.B. 'grant' permissions are ADDED to the existing permissions for")
 	fmt.Println("                                    a card. Use 'revoke' to remove unwanted permissions.")
 	fmt.Println("                                    Also, the 'from' and 'to' dates for a card are WIDENED to")
 	fmt.Println("                                    the earliest 'from' date and latest 'to' date combination")
 	fmt.Println("                                    for all records for this card across all controllers.")
+	fmt.Println()
+	fmt.Println("  <--firstcard>    (optional) grants first-card privilege to all doors to which the card has access.")
 	fmt.Println()
 	fmt.Println("  Options:")
 	fmt.Println()
