@@ -2,7 +2,7 @@
 
 - [x] Migrate to codeberg.org (cf. https://codeberg.org/uhppoted/uhppoted/issues/1)
 - [x] 'set first-card' (cf. https://github.com/uhppoted/uhppoted/issues/82)
-- [ ] Add first-card privilege to `get-card` and `put-card` (cf. https://codeberg.org/uhppoted/uhppoted/issues/3)
+- [x] Add first-card privilege to `get-card` and `put-card` (cf. https://codeberg.org/uhppoted/uhppoted/issues/3)
     - [x] get-card
     - [x] get-card-by-index
     - [x] put-card
@@ -10,8 +10,8 @@
     - [x] compare-acl
     - [x] load-acl
     - [x] show
-    - [ ] grant
-    - [ ] revoke
+    - [x] grant
+    - [x] ~~revoke~~
 
 
 - [ ] CLI is waiting for CR on error
