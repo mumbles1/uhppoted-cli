@@ -1,0 +1,41 @@
+name: Import upstream history
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "31 6 * * 1"
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out downstream bootstrap
+        uses: actions/checkout@v4
+
+      - name: Import upstream
+        shell: bash
+        env:
+          UPSTREAM_URL: https://codeberg.org/uhppoted/uhppoted-cli.git
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          git clone "$UPSTREAM_URL" source
+          cd source
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          rm -rf .github/workflows
+          mkdir -p .github/workflows
+          cp "$GITHUB_WORKSPACE/.github/workflows/import-upstream.yml" .github/workflows/import-upstream.yml
+          git add --all .github/workflows
+
+          if ! git diff --cached --quiet; then
+            git commit -m "Maintain downstream workflow set"
+          fi
+
+          git remote add downstream "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git push --force downstream HEAD:main
